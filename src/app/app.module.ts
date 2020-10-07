@@ -12,10 +12,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-transacciones.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DetalleTransaccionesComponent
   ],
   imports: [
     BrowserModule,
