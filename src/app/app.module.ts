@@ -12,10 +12,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PerfilPersonalComponent
   ],
   imports: [
     BrowserModule,
