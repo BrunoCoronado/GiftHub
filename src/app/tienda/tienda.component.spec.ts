@@ -1,40 +1,61 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { carritoTienda, giftCard, TiendaComponent } from './tienda.component';
+import { WebService } from '../web.service';
 
-import { TiendaComponent } from './tienda.component';
+class WebServiceMocked {
+
+  resultado = true;
+
+  insertarTarjetas(){
+    return this.resultado;
+  }
+
+  insertarTransaccion(){
+    return this.resultado;
+  }
+
+}
 
 describe('TiendaComponent', () => {
   let component: TiendaComponent;
   let fixture: ComponentFixture<TiendaComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TiendaComponent],
-      imports: [
-        NoopAnimationsModule,
-        LayoutModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-      ]
-    }).compileComponents();
-  }));
+  let carrito: carritoTienda;
+  let webService: WebServiceMocked;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TiendaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    webService = new WebServiceMocked();
+    carrito = new carritoTienda();
+    component = new TiendaComponent();
   });
 
-  it('should compile', () => {
-    expect(component).toBeTruthy();
+  afterEach(() =>{
+    carrito = null;
+    webService = null;
+    component = null;
+  });
+
+  it('Recuperar las giftcards desde la API', () => {
+    expect(component.getCards()).not.toBeNull();
+  });
+
+  it('Recuperar la tasa de cambio desde la API', () => {
+    expect(component.getTasa()).not.toBeNull();
+  });
+
+  it('Recuperar los valores desde la API', () => {
+    expect(component.getValues()).not.toBeNull();
+  });
+
+  it('Recuperar un valor especifico desde la API', () => {
+    expect(component.getValue(0)).toBe(0);
+  });
+
+  it('Encriptar tarjeta sea string', () => {
+    expect(component.encriptarTarjeta('1234123412341234')).toEqual(jasmine.any(String));
+  });
+
+  it('Encriptar tarjeta tenga 16 caracteres', () => {
+    expect(component.encriptarTarjeta('1234123412341234').length).toBe(16);
   });
 });
