@@ -22,4 +22,11 @@ describe('VerCatalogoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //prueba para obtener catalogo
+  it('Recuperar el catalogo desde la API', () => {
+    expect(component.getCatalogo()).not.toBeNull();
+  });
+
 });
+

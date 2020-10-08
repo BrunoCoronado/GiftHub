@@ -12,4 +12,8 @@ export class VerCatalogoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getCatalogo() {
+    let catalogo = [];
+    return catalogo;
+  }
 }
