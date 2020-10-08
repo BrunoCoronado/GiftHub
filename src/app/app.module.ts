@@ -19,11 +19,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { TiendaComponent } from './tienda/tienda.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import { CarritoComponent } from './carrito/carrito.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TiendaComponent
+    TiendaComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

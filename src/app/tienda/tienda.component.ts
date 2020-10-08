@@ -4,28 +4,21 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 //import { stringify } from 'querystring';
 
-
-Component({
-  selector: 'app-tienda',
-  templateUrl: './tienda.component.html',
-  styleUrls: ['./tienda.component.css']
-})
-
 export {
   TiendaComponent,
   carritoTienda,
   giftCard
 }
 
+@Component({
+  selector: 'app-tienda',
+  templateUrl: './tienda.component.html',
+  styleUrls: ['./tienda.component.css']
+})
+
 class TiendaComponent {
 
-  /*isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );*/
-
-  constructor(private breakpointObserver?: BreakpointObserver) {}
+  constructor() {}
   
   public getCards() {
     let giftcards = [];
