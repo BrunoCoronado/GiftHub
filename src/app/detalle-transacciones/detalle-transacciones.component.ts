@@ -12,4 +12,8 @@ export class DetalleTransaccionesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getTransacciones() {
+    let transacciones = [];
+    return transacciones;
+  }
 }

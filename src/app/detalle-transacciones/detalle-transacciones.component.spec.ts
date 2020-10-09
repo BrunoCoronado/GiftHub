@@ -22,4 +22,9 @@ describe('DetalleTransaccionesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+    //prueba para obtener transacciones
+    it('Recuperar las transacciones desde firebase', () => {
+      expect(component.getTransacciones()).not.toBeNull();
+    });
 });
