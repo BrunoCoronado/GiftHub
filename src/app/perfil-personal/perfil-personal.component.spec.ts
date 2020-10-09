@@ -22,4 +22,13 @@ describe('PerfilPersonalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+  it('Prueba password', () => {
+    console.log("Pasa aquiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+    expect(component.noVacio("")).toBe(true)
+  });
+
+
 });

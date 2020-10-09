@@ -1,8 +1,177 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<br />
+<br />
+
+<form>
+
+
+
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="nombres">Nombres</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+        aria-describedby="basic-addon1" disabled value="{{this.user.nombres}}" id="username1">
     </div>
   </div>
+
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="apellidos">Apellidos</span>
+      </div>
+      <input type="text" class="form-control"  aria-describedby="basic-addon3" disabled
+        value="{{this.user.apellidos}}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="correo">Correo</span>
+      </div>
+      <input type="text" class="form-control" i aria-describedby="basic-addon3" disabled
+        value="{{this.user.correo}}">
+    </div>
+
+  </div>
+
+  <div class="form-row">
+    <div class="col-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="dpi">DPI</span>
+        </div>
+        <input type="text" class="form-control"  aria-describedby="basic-addon3" disabled
+          value="{{this.user.dpi}}">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="edad">Edad</span>
+        </div>
+        <input type="text" class="form-control"  aria-describedby="basic-addon3" disabled
+          value="{{this.user.edad}}">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="rol">Rol</span>
+        </div>
+        <input type="text" class="form-control"  aria-describedby="basic-addon3" disabled
+          value="{{this.user.rol}}">
+      </div>
+    </div>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="usuario">Usuario</span>
+    </div>
+    <input type="text" class="form-control" aria-describedby="basic-addon3" disabled
+       value="{{this.user.usuario}}">
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="pass">Password</span>
+    </div>
+    <input type="text" class="form-control" aria-describedby="basic-addon3" disabled
+       value="{{this.user.password}}">
+  </div>
+
+  <a class="btn btn-primary" (click)="openModal(template)">Modificar</a>
+
+
+</form>
+
+
+
+
+<ng-template #template let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modificar Datos</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(template)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+
+
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-12">
+        <p class="text-left f-w-600 text-inverse">Nombres</p>
+
+        <input type="text" class="form-control" placeholder="Nombres" #nombres id="modal-nombres">
+      </div>
+    </div>
+    <br />
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">Apellidos</p>
+
+        <input type="text" class="form-control" placeholder="Apellidos" #apellidos id="modal-apellidos">
+      </div>
+    </div>
+    <br />
+
+
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">DPI</p>
+
+        <input type="text" class="form-control" placeholder="DPI" #dpi id="modal-dpi">
+      </div>
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">Email</p>
+
+        <input type="text" class="form-control" placeholder="Edad" #edad id="modal-edad">
+      </div>
+
+    </div>
+
+    <br />
+
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">Correo</p>
+
+        <input type="text" class="form-control" placeholder="Correo" #correo id="modal-correo">
+      </div>
+    </div>
+    <br />
+
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">Usuario</p>
+
+        <input type="text" class="form-control" placeholder="User" #user id="modal-user">
+      </div>
+    </div>
+
+
+    <br />
+
+    <div class="input-group">
+      <div _ngcontent-amc-c7="" class="col-sm-6">
+        <p class="text-left f-w-600 text-inverse">Password</p>
+
+        <input type="text" class="form-control" placeholder="Password" #password id="modal-password">
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modificarUser(nombres,apellidos,dpi,edad,correo,user,password)">Registrar</button>
+  </div>
+</ng-template>
