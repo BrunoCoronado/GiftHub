@@ -18,4 +18,12 @@ describe('CarritoComponent', () => {
     expect(component.getCarrito()).not.toBeNull();
   });
 
+  it('Eliminar carrito del localStorage', () => {
+    expect(component.eliminarCarrito()).toBeTruthy();
+  });
+
+  it('Modificar cantidad carrito', () => {
+    expect(component.modificarCarrito(1, 2)).toBeTruthy();
+  });
+
 });
