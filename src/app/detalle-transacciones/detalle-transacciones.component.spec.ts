@@ -27,4 +27,9 @@ describe('DetalleTransaccionesComponent', () => {
     it('Recuperar las transacciones desde firebase', () => {
       expect(component.getTransacciones()).not.toBeNull();
     });
+
+      //prueba para obtener transacciones
+      it('Recuperar las transacciones casteadas desde firebase', () => {
+        expect(component.casteoTransaccion()).not.toBeNull();
+      });
 });
