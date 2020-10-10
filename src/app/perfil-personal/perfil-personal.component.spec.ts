@@ -5,7 +5,7 @@ import { PerfilPersonalComponent } from './perfil-personal.component';
 describe('PerfilPersonalComponent', () => {
   let component: PerfilPersonalComponent;
   let fixture: ComponentFixture<PerfilPersonalComponent>;
-  let spy: any;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PerfilPersonalComponent ]

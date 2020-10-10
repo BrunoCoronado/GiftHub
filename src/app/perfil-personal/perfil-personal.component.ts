@@ -53,6 +53,7 @@ export class PerfilPersonalComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
+    
     try {
       this.modalRef = this.modalService.show(template);
     } catch (e) {
@@ -175,5 +176,12 @@ export class PerfilPersonalComponent implements OnInit {
 
       return true;
     });
+  }
+
+  pruebamostrar(){
+    this.toastr.error(
+      "Validación Usuario",
+      "Todos los campos deben estar llenos"
+    );
   }
 }

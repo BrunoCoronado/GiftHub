@@ -81,7 +81,7 @@
        value="{{this.user.password}}">
   </div>
 
-  <a class="btn btn-primary" (click)="openModal(template)">Modificar</a>
+  <a class="btn btn-primary" (click)="openModal(template2)">Modificar</a>
 
 
 </form>
@@ -89,31 +89,33 @@
 
 
 
-<ng-template #template let-modal>
+<ng-template #template2 let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Modificar Datos</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeModal(template)">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(template2)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
 
-
-
+  
+  
 
     <div class="input-group">
       <div _ngcontent-amc-c7="" class="col-sm-12">
         <p class="text-left f-w-600 text-inverse">Nombres</p>
 
-        <input type="text" class="form-control" placeholder="Nombres" #nombres id="modal-nombres">
+        <input type="text" class="form-control" placeholder="Nombres" #nombres value="{{this.user.nombres}}">
       </div>
     </div>
     <br />
+
+
     <div class="input-group">
       <div _ngcontent-amc-c7="" class="col-sm-6">
         <p class="text-left f-w-600 text-inverse">Apellidos</p>
 
-        <input type="text" class="form-control" placeholder="Apellidos" #apellidos id="modal-apellidos">
+        <input type="text" class="form-control" placeholder="Apellidos" #apellidos value="{{this.user.apellidos}}">
       </div>
     </div>
     <br />
@@ -123,12 +125,12 @@
       <div _ngcontent-amc-c7="" class="col-sm-6">
         <p class="text-left f-w-600 text-inverse">DPI</p>
 
-        <input type="text" class="form-control" placeholder="DPI" #dpi id="modal-dpi">
+        <input type="text" class="form-control" placeholder="DPI" #dpi value="{{this.user.dpi}}">
       </div>
       <div _ngcontent-amc-c7="" class="col-sm-6">
-        <p class="text-left f-w-600 text-inverse">Email</p>
+        <p class="text-left f-w-600 text-inverse">Edad</p>
 
-        <input type="text" class="form-control" placeholder="Edad" #edad id="modal-edad">
+        <input type="text" class="form-control" placeholder="Edad" #edad value="{{this.user.edad}}">
       </div>
 
     </div>
@@ -136,19 +138,19 @@
     <br />
 
     <div class="input-group">
-      <div _ngcontent-amc-c7="" class="col-sm-6">
+      <div _ngcontent-amc-c7="" class="col-sm-12">
         <p class="text-left f-w-600 text-inverse">Correo</p>
 
-        <input type="text" class="form-control" placeholder="Correo" #correo id="modal-correo">
+        <input type="text" class="form-control" placeholder="Correo" #correo value="{{this.user.correo}}">
       </div>
     </div>
     <br />
 
     <div class="input-group">
-      <div _ngcontent-amc-c7="" class="col-sm-6">
+      <div _ngcontent-amc-c7="" class="col-sm-12">
         <p class="text-left f-w-600 text-inverse">Usuario</p>
 
-        <input type="text" class="form-control" placeholder="User" #user id="modal-user">
+        <input type="text" class="form-control" placeholder="Usuario" #modalusuario value="{{this.user.usuario}}">
       </div>
     </div>
 
@@ -156,10 +158,10 @@
     <br />
 
     <div class="input-group">
-      <div _ngcontent-amc-c7="" class="col-sm-6">
+      <div class="col-sm-12">
         <p class="text-left f-w-600 text-inverse">Password</p>
 
-        <input type="text" class="form-control" placeholder="Password" #password id="modal-password">
+        <input type="text" class="form-control" placeholder="Password" #password id="modal-password" value="{{this.user.password}}">
       </div>
     </div>
 
@@ -172,6 +174,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modificarUser(nombres,apellidos,dpi,edad,correo,user,password)">Registrar</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modificarUser(nombres,apellidos,dpi,edad,correo,modalusuario,password)">Registrar</button>
   </div>
 </ng-template>
+
