@@ -94,6 +94,7 @@ export class PerfilPersonalComponent implements OnInit {
     };
 
     localStorage.setItem("Usuario", JSON.stringify(user1));
+    return true;
   }
 
   modificarUser(nombres, apellidos, dpi, edad, correo, user, password) {
@@ -107,6 +108,17 @@ export class PerfilPersonalComponent implements OnInit {
       this.noVacio(password.value)
     ) {
       if (this.checkUser(user.value)) {
+
+        this.user.nombres=nombres.value;
+        this.user.apellidos=apellidos.value;
+        this.user.dpi=dpi.value;
+        this.user.edad=edad.value;
+        this.user.correo=correo.value;
+        this.user.usuario=user.value;
+        this.user.password=password.value;
+
+
+        this.userService.updateUser(this.user,this.user.id);
       } else {
         this.toastr.error(
           "Validación Usuario",

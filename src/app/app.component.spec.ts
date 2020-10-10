@@ -37,8 +37,4 @@ describe('AppComponent', () => {
   });
 
 
-  it('Prueba password', () => {
-    console.log("Pasa aquiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-    expect(component1.noVacio("")).toBe(true)
-  });
 });
