@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HistorialComprasComponent} from './historial-compras/historial-compras.component'
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:"", redirectTo:"historial-compras", pathMatch:"full"},
+  { path:"historial-compras",  component:HistorialComprasComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
