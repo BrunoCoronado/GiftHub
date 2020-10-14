@@ -15,7 +15,9 @@ export class DetalleTransaccionesComponent implements OnInit {
   ngOnInit(): void {
 
     //console.log("Las Transacciones SON : \n")
-    this.casteoTransaccion();
+   // this.casteoTransaccion();
+
+   //este metodo imprime las transacciones, falta meterlo a un arreglo y crear objetos
     this.clientesService.getusuarios2();
     //console.log(this.transacciones)
   }

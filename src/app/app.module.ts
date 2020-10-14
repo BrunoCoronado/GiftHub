@@ -13,7 +13,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-transacciones.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,10 @@ import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-t
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule  
   ],
   providers: [
     AngularFirestore,
