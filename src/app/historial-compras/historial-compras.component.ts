@@ -15,7 +15,7 @@ export class HistorialComprasComponent implements OnInit {
   }
 
   async cargar(){
-    let res= await this.webService.getUserTransactions('id').toPromise();
+    let res= await this.webService.getUserTransactions('id').get().toPromise();
     console.log(res);
   }
 
