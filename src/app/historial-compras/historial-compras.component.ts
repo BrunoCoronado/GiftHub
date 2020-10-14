@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-historial-compras',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialComprasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private webService: WebService) { }
 
-  ngOnInit(): void {
+ ngOnInit(): void {
+    this.cargar();
+  }
+
+  async cargar(){
+    let res= await this.webService.getUserTransactions('id').toPromise();
+    console.log(res);
   }
 
 }
