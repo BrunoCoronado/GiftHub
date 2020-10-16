@@ -18,14 +18,15 @@ export class DetalleTransaccionesComponent implements OnInit {
    // this.casteoTransaccion();
 
    //este metodo imprime las transacciones, falta meterlo a un arreglo y crear objetos
-    this.clientesService.getusuarios2();
+    this.transacciones=this.clientesService.gettransaccionesdetalladas();
+    console.log(this.transacciones.length)
     //console.log(this.transacciones)
   }
 
   public getTransacciones() {
     let transacciones = [];
 
-    transacciones = this.clientesService.getTransacciones();
+    //transacciones = this.clientesService.getTransacciones();
     return transacciones;
   }
 

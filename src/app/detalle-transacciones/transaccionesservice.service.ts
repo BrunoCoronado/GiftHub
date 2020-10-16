@@ -22,7 +22,7 @@ export class TransaccionesserviceService {
   }
 
 
-  public getusuarios2() {
+  public gettransaccionesdetalladas() {
    // return this.firestore.collection("usuario").snapshotChanges();
     
 
@@ -47,6 +47,19 @@ export class TransaccionesserviceService {
             subCollectionDoc.forEach(doc => {
               console.log("Sub Document ID: ", doc.id);
               console.log("Sub Document estado: ", doc.data().Estado);
+
+              //parte para meterlo a array
+              this.transacciones.push({
+                id: doc.id,
+                estado: doc.data().Estado,
+                fecha: doc.data().Fecha,
+                Gifcards: doc.data().Gifcards,
+                tarjeta: doc.data().Tarjeta,
+                total: doc.data().Total
+      
+              });
+
+
             })
 
            } );
@@ -56,6 +69,7 @@ export class TransaccionesserviceService {
 
 //fin
   });
+  return this.transacciones;
 }
 
 
@@ -84,36 +98,17 @@ export class TransaccionesserviceService {
 
   }
   //Obtiene todos los gatos
-  /* public casteoTransaccion() {
+   public casteoTransaccion() {
     //return 
     
     let transacciones: Transaccion [] = [];
-  
-   this.getTransacciones().forEach( a => {
-      a.forEach( item => {
-        var obj=item.payload.doc.data();
-  
-        transacciones.push(
-          {
-            id:obj.id;
-            estado: obj.Estado;
-            fecha: string;
-            Gifcards: [];
-            tarjeta: string;
-            total: number;
-          });
-      });
-    });
-    console.log("asdasdasdas")
-    console.log(usuarios)
-    return usuarios;
-  }*/
+  return transacciones;
   //Actual
 
 
 
 }
-
+}
 
 /*public getData(){
 

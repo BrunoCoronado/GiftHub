@@ -8,9 +8,9 @@ describe('DetalleTransaccionesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetalleTransaccionesComponent ]
+      declarations: [DetalleTransaccionesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -23,13 +23,18 @@ describe('DetalleTransaccionesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    //prueba para obtener transacciones
-    it('Recuperar las transacciones desde firebase', () => {
-      expect(component.getTransacciones()).not.toBeNull();
-    });
+  //prueba para obtener transacciones
+  it('Recuperar las transacciones desde firebase', () => {
+    expect(component.getTransacciones()).not.toBeNull();
+  });
 
-      //prueba para obtener transacciones
-      it('Recuperar las transacciones casteadas desde firebase', () => {
-        expect(component.casteoTransaccion()).not.toBeNull();
-      });
+  //prueba para obtener transacciones
+  it('Recuperar las transacciones casteadas desde firebase', () => {
+    expect(component.casteoTransaccion()).not.toBeNull();
+  });
+
+  //prueba para obtener transacciones
+  it('Metodo para insertar transacciones como objetos', () => {
+    expect(component.clientesService.gettransaccionesdetalladas()).not.toBeNull();
+  });
 });
