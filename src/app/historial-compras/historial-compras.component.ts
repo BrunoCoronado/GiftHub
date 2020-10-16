@@ -11,12 +11,16 @@ export class HistorialComprasComponent implements OnInit {
   constructor(private webService: WebService) { }
 
  ngOnInit(): void {
-    this.cargar();
+    //this.cargar();
   }
-
+/*
   async cargar(){
     let res= await this.webService.getUserTransactions('id').get().toPromise();
     console.log(res);
+  }*/
+
+  public static getHistorial(){
+    return [];
   }
 
 }
