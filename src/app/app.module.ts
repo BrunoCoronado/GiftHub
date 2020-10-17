@@ -13,11 +13,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HistorialComprasComponent } from './historial-compras/historial-compras.component';
+import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-giftcards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HistorialComprasComponent
+    HistorialComprasComponent,
+    InventarioGiftcardsComponent
   ],
   imports: [
     BrowserModule,
