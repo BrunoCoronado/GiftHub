@@ -14,6 +14,7 @@ export class CarritoComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    console.log(this.cifrarTarjeta('1234876543211234'));
   }
 
   public getCarrito(): carritoTienda {
@@ -35,6 +36,17 @@ export class CarritoComponent implements OnInit {
       this.tasaCambio = data[0].total;
       console.log('>> Tasa de cambio: ' + data[0].total);
     });
+  }
+
+  public cifrarTarjeta(tarjeta:string): string {
+
+    let tarjetaC = '';
+
+    for(let i = 0; i < 16; i++){
+      tarjetaC += i < 4 || i >= 12 ? 'X' : tarjeta[i];
+    }
+
+    return tarjetaC;
   }
 
 }
