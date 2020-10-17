@@ -11,6 +11,7 @@ export class TransaccionesserviceService {
   public transacciones = [];
 
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) { }
+  
   public getTransacciones2() {
     return this.firestore.collection("transaccion").snapshotChanges();
 
@@ -23,141 +24,90 @@ export class TransaccionesserviceService {
 
 
   public gettransaccionesdetalladas() {
-   // return this.firestore.collection("usuario").snapshotChanges();
-    
+    // return this.firestore.collection("usuario").snapshotChanges();
 
-    let documents =  this.firestore.collection("usuario").get();
+
+    let documents = this.firestore.collection("usuario").get();
 
     documents.forEach(async doc => {
-         console.log("Cantidad de documentos en la coleccion usuarip: ", doc.docs.length);
-         
-          for(let i=0;i<doc.docs.length;i++){
-              let id=doc.docs[i].id
-            console.log(doc.docs[i].id)
-            //en el for recorro todos los documentos de la coleccion usuario y asigno el id de cada uno a la variable id
-            //luego obtengo un documento especifico de la coleccion usando el id y luego obtengo la coleccion transaccion
-            //luegro recorro la transaccion que es una coleccion de documentos y luego recorro esa coleccion
-           let coleccion= this.firestore.collection("usuario").doc(id).collection("transaccion").get();
+      console.log("Cantidad de documentos en la coleccion usuarip: ", doc.docs.length);
 
-           console.log("LA COLECCION ES "+coleccion)
+      for (let i = 0; i < doc.docs.length; i++) {
+        let id = doc.docs[i].id
+        console.log(doc.docs[i].id)
+        //en el for recorro todos los documentos de la coleccion usuario y asigno el id de cada uno a la variable id
+        //luego obtengo un documento especifico de la coleccion usando el id y luego obtengo la coleccion transaccion
+        //luegro recorro la transaccion que es una coleccion de documentos y luego recorro esa coleccion
+        let coleccion = this.firestore.collection("usuario").doc(id).collection("transaccion").get();
 
-           
-           coleccion.forEach(subCollectionDoc => {
-            
-            subCollectionDoc.forEach(doc => {
-              console.log("Sub Document ID: ", doc.id);
-              console.log("Sub Document estado: ", doc.data().Estado);
-
-              //parte para meterlo a array
-              this.transacciones.push({
-                id: doc.id,
-                estado: doc.data().Estado,
-                fecha: doc.data().Fecha,
-                Gifcards: doc.data().Gifcards,
-                tarjeta: doc.data().Tarjeta,
-                total: doc.data().Total
-      
-              });
+        console.log("LA COLECCION ES " + coleccion)
 
 
-            })
+        coleccion.forEach(subCollectionDoc => {
 
-           } );
+          subCollectionDoc.forEach(doc => {
+            console.log("Sub Document ID: ", doc.id);
+            console.log("Sub Document estado: ", doc.data().Estado);
 
-           
-          }
+            //parte para meterlo a array
+            this.transacciones.push({
+              id: doc.id,
+              estado: doc.data().Estado,
+              fecha: doc.data().Fecha,
+              Gifcards: doc.data().Gifcards,
+              tarjeta: doc.data().Tarjeta,
+              total: doc.data().Total
 
-//fin
-  });
-  return this.transacciones;
-}
-
-
-/*
-  public getusuarios2() {
-    //return this.firestore.collection("usuario").doc("id").collection("transacciones");
-
-    this.firestore.collection('BD_Canciones').doc("id") .collection('transaccion').onSnapsnapshotChangesshot((snapshotChange) => {
-        this.data = [];
-            snapshotChange.forEach((doc) => {                     
-                this.data.push({
-                    key: doc.id,                         
-                    name: doc.data().name,
-                    type: doc.data().type,
-                    compases: doc.data().amount,
-                    ....
-                })
-   
             });
-    })
 
+
+          })
+
+        });
+
+
+      }
+
+      //fin
+    });
+    return this.transacciones;
   }
-*/
+
+
+  /*
+    public getusuarios2() {
+      //return this.firestore.collection("usuario").doc("id").collection("transacciones");
+  
+      this.firestore.collection('BD_Canciones').doc("id") .collection('transaccion').onSnapsnapshotChangesshot((snapshotChange) => {
+          this.data = [];
+              snapshotChange.forEach((doc) => {                     
+                  this.data.push({
+                      key: doc.id,                         
+                      name: doc.data().name,
+                      type: doc.data().type,
+                      compases: doc.data().amount,
+                      ....
+                  })
+     
+              });
+      })
+  
+    }
+  */
   public getTransacciones() {
     return this.transacciones;
 
   }
   //Obtiene todos los gatos
-   public casteoTransaccion() {
+  public casteoTransaccion() {
     //return 
-    
-    let transacciones: Transaccion [] = [];
-  return transacciones;
-  //Actual
+
+    let transacciones: Transaccion[] = [];
+    return transacciones;
+    //Actual
 
 
 
+  }
 }
-}
-
-/*public getData(){
-
-   let usersCollection: AngularFirestoreCollection<User>;
-   let usuarios: User [] = [];
-
-  // return this.firestore.collection('usuario').snapshotChanges();
-   usersCollection.snapshotChanges().forEach( a => {
-     a.forEach( item => {
-       var obj=item.payload.doc.data();
-
-       usuarios.push(
-         {
-           id: obj.id,
-           usuario:obj.usuario,
-           nombres:obj.nombres,
-           apellidos:obj.apellidos,
-           correo:obj.correo,
-           password:obj.password,
-           dpi:obj.dpi,
-           edad:obj.edad,
-           rol:obj.rol
-         });
-     });
-   });
-   console.log("asdasdasdas")
-   console.log(usuarios)
-   return usuarios;
-  /* usersCollection.snapshotChanges().forEach( a => {
-     a.forEach( item => {
-       var obj=item.payload.doc.data();
-
-       usuarios.push(
-         {
-           id: obj.id,
-           usuario:obj.usuario,
-           nombres:obj.nombres,
-           apellidos:obj.apellidos,
-           correo:obj.correo,
-           password:obj.password,
-           dpi:obj.dpi,
-           edad:obj.edad,
-           rol:obj.rol
-         });
-     });
-   });
-   console.log("asdasdasdas")
-   console.log(usuarios)
-   return usuarios;
-
- }*/
 
