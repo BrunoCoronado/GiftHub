@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { carritoTienda } from '../tienda/tienda.component';
 
 import { CarritoComponent } from './carrito.component';
 
@@ -8,6 +9,7 @@ describe('CarritoComponent', () => {
   
   beforeEach(() => {
     component = new CarritoComponent();
+    localStorage.setItem('carritoTienda', JSON.stringify(new carritoTienda()));
   });
 
   afterEach(() => {

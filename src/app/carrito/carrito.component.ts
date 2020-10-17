@@ -11,7 +11,7 @@ export class CarritoComponent implements OnInit {
 
   tasaCambio = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http?: HttpClient) { }
 
   ngOnInit(): void {
     console.log(this.cifrarTarjeta('1234876543211234'));
