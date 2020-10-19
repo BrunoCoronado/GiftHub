@@ -30,6 +30,7 @@ import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+import { RegalarGiftcardsComponent } from './regalar-giftcards/regalar-giftcards.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     DetalleTransaccionesComponent,
     HistorialComprasComponent,
     InventarioGiftcardsComponent,
-    PerfilPersonalComponent
+    PerfilPersonalComponent,
+    RegalarGiftcardsComponent
   ],
   imports: [
     BrowserModule,
