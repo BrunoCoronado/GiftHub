@@ -21,13 +21,15 @@ import { TiendaComponent } from './tienda/tienda.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { CarritoComponent } from './carrito/carrito.component';
+import { RegistroComponent } from './autenticacion/registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VerCatalogoComponent,
     TiendaComponent,
-    CarritoComponent
+    CarritoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
