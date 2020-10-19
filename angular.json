@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "gifthub"
+  "defaultProject": "gifthub",
+  "cli": {
+    "analytics": false
+  }
 }
