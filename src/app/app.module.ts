@@ -25,6 +25,8 @@ import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-t
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HistorialComprasComponent } from './historial-compras/historial-compras.component';
+import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-giftcards.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatButtonModule } from '@angular/material/button';
     TiendaComponent,
     CarritoComponent,
     RegistroComponent,
-    DetalleTransaccionesComponent
+    DetalleTransaccionesComponent,
+    HistorialComprasComponent,
+    InventarioGiftcardsComponent
   ],
   imports: [
     BrowserModule,

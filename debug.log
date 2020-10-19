@@ -3,3 +3,8 @@
 [1016/211952.869:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\CHECHA~1\AppData\Local\Temp\karma-46638989\Crashpad\attachments\1a72439a-650e-4488-8879-ec68cad4153e: El sistema no puede encontrar la ruta especificada. (0x3)
 [1014/235852.535:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1016/215002.038:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1013/143810.704:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[1013/143810.705:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[1013/143810.705:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[1013/143810.705:ERROR:exception_snapshot_win.cc(99)] thread ID 1424 not found in process
+[1016/164034.170:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
