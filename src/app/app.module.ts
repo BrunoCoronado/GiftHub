@@ -16,12 +16,15 @@ import { VerCatalogoComponent } from './ver-catalogo/ver-catalogo.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
 import { TiendaComponent } from './tienda/tienda.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { CarritoComponent } from './carrito/carrito.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
+import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-transacciones.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
     VerCatalogoComponent,
     TiendaComponent,
     CarritoComponent,
-    RegistroComponent
+    RegistroComponent,
+    DetalleTransaccionesComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,10 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
     MatButtonModule,
     LayoutModule,
     MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule  
   ],
   providers: [
     AngularFirestore,
