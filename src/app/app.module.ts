@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
@@ -27,6 +27,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HistorialComprasComponent } from './historial-compras/historial-compras.component';
 import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-giftcards.component';
+import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-
     RegistroComponent,
     DetalleTransaccionesComponent,
     HistorialComprasComponent,
-    InventarioGiftcardsComponent
+    InventarioGiftcardsComponent,
+    PerfilPersonalComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,10 @@ import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-
     MatTableModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule  
+    FormsModule,  
+    ModalModule.forRoot(),
+    ToastrModule.forRoot(),
+    CommonModule,
   ],
   providers: [
     AngularFirestore,
