@@ -13,6 +13,8 @@ export class RegalarGiftcardsComponent implements OnInit {
   cards1: Giftcard[] = [];
   cards2: Giftcard[] = [];
   modalRef: BsModalRef;
+  usuarios: User[] = [];
+
 
   card: Giftcard = {
     id: "",
@@ -46,6 +48,31 @@ export class RegalarGiftcardsComponent implements OnInit {
     this.getCards();
   }
 
+  obtenerUsuarios(){
+    let ret=this.servicio.getUsuarios()
+
+    ret.forEach((a) => {
+      a.forEach((item) => {
+        var obj = item.payload.doc.data();
+        if(this.user.usuario!=obj.usuario){
+          this.usuarios.push({
+            id: obj.id,
+            usuario: obj.usuario,
+            nombres: obj.nombres,
+            apellidos: obj.apellidos,
+            correo: obj.correo,
+            password: obj.password,
+            dpi: obj.dpi,
+            edad: obj.edad,
+            rol: obj.rol,
+          });
+        }
+      });
+    });
+
+  }
+
+
   SimularLogin() {
     var user1: User = {
       id: "cOBvdAQB0yF2HNvIdflQ",
@@ -70,8 +97,9 @@ export class RegalarGiftcardsComponent implements OnInit {
       a.forEach((item) => {
         var obj = item.payload.doc.data();
         console.log("entra");
+
         this.cards1.push({
-          id: obj.id,
+          id: item.payload.doc.id,
           valor: obj.valor,
           name: obj.name,
           codigo: obj.codigo,
@@ -83,13 +111,16 @@ export class RegalarGiftcardsComponent implements OnInit {
       console.log(this.cards1.length);
       for (let i = 0; i < this.cards1.length; i++) {
         let obj = this.cards1[i];
-        console.log(obj);
         console.log(this.user.usuario);
 
         if (obj.uid == this.user.usuario) {
+          console.log(obj)
           this.cards2.push(obj);
         }
       }
+
+      this.obtenerUsuarios();
+
     });
   }
 
@@ -111,6 +142,7 @@ export class RegalarGiftcardsComponent implements OnInit {
   openModal(objeto, template: TemplateRef<any>) {
     try {
       this.modalRef = this.modalService.show(template);
+      this.card=objeto;
     } catch (e) {
       console.log(e);
     }
@@ -118,5 +150,13 @@ export class RegalarGiftcardsComponent implements OnInit {
 
   closeModal(template: TemplateRef<any>) {
     this.modalRef.hide();
+  }
+
+  realizarCambio(objeto){
+    this.card.uid=objeto.value;
+    this.servicio.updateGiftcard(this.card,this.card.id).then(ret=>{
+      location.reload();
+    })
+    
   }
 }

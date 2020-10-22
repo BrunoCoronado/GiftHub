@@ -3,6 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/firestore";
+import { User } from '../perfil-personal/user';
 import { Giftcard } from "./giftcard";
 
 @Injectable({
@@ -14,6 +15,14 @@ export class RegalarService {
     private firestore?: AngularFirestore
   ) {}
 
+  getUsuarios() {
+    let usersCollection: AngularFirestoreCollection<User>;
+    let usuarios: User [] = [];
+
+    return this.firestore.collection('usuario').snapshotChanges();
+    return usuarios;
+  }
+
   getGiftCards() {
     let usersCollection: AngularFirestoreCollection<Giftcard>;
     let array: Giftcard [] = [];
@@ -22,5 +31,8 @@ export class RegalarService {
     return array;
   }
 
+  updateGiftcard(gift: Giftcard, id: string) {
+    return this.firestore.collection("giftcard").doc(id).update(gift);
+  }
 
 }
