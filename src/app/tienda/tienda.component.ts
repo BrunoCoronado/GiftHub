@@ -1,25 +1,92 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-//import { stringify } from 'querystring';
-
-export {
-  TiendaComponent,
-  carritoTienda,
-  giftCard
-}
+import { HttpClient } from '@angular/common/http';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tienda',
   templateUrl: './tienda.component.html',
-  styleUrls: ['./tienda.component.css']
+  styleUrls: ['./tienda.component.css'],
 })
+export class TiendaComponent implements OnInit {
+  giftCards = [];
+  values = [];
 
-class TiendaComponent {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor() {}
-  
+  constructor(private http?: HttpClient, private _snackBar?: MatSnackBar) {}
+
+  async ngOnInit() {
+    await this.http
+      .get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Card')
+      .subscribe((data) => {
+        this.giftCards = data;
+        console.log(data);
+      });
+
+    await this.http
+      .get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Value')
+      .subscribe((data) => {
+        this.values = data;
+        console.log(data);
+      });
+  }
+
+  gridColumns = 3;
+  defaultElevation = 2;
+  raisedElevation = 8;
+
+  chipControl(tarjeta, valor) {
+    let carrito = localStorage.getItem('carritoTienda');
+
+    if (carrito) {
+      let carroNuevo: carritoTienda = new carritoTienda();
+      carroNuevo.giftCardsCarrito = (JSON.parse(
+        carrito
+      ) as carritoTienda).giftCardsCarrito;
+      carroNuevo.insertarCard(
+        new giftCard(
+          tarjeta.id,
+          tarjeta.name,
+          tarjeta.image,
+          tarjeta.chargeRate,
+          valor,
+          1
+        )
+      );
+      console.log(carroNuevo);
+      localStorage.setItem('carritoTienda', JSON.stringify(carroNuevo));
+    } else {
+      let carroNuevo: carritoTienda = new carritoTienda();
+      carroNuevo.insertarCard(
+        new giftCard(
+          tarjeta.id,
+          tarjeta.name,
+          tarjeta.image,
+          tarjeta.chargeRate,
+          valor,
+          1
+        )
+      );
+      localStorage.setItem('carritoTienda', JSON.stringify(carroNuevo));
+    }
+
+    this._snackBar.open(
+      'Tarjeta ' + tarjeta.name + ' de 💲' + valor + ' agregada al carrito 🛒',
+      'Cerrar',
+      {
+        duration: 3000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      }
+    );
+  }
+
   public getCards() {
     let giftcards = [];
     return giftcards;
@@ -30,39 +97,53 @@ class TiendaComponent {
     return values;
   }
 
-  public getValue(id: number):number {
+  public getValue(id: number): number {
     return id;
   }
 
-  public getTasa():number {
+  public getTasa(): number {
     let tasaCambio = 0;
     return tasaCambio;
   }
 
-  public encriptarTarjeta(tarjeta:string):string {
+  public encriptarTarjeta(tarjeta: string): string {
     return tarjeta;
   }
 
-  public agregarTarjeta():boolean {
+  public agregarTarjeta(): boolean {
     return true;
   }
-
 }
 
+export class carritoTienda {
 
-class carritoTienda {
+  tarjeta: string = '';
+  estado: string = '';
+  total: number = 0;
+  nombre_tarjeta: string = '';
+  public giftCardsCarrito: giftCard[] = [];
 
-  public giftCards: giftCard[];
-
-  constructor() {
-    this.giftCards = [];
-  }
+  constructor() {}
 
   public insertarCard(tarjeta: giftCard): boolean {
+    for (let aux_tarjeta of this.giftCardsCarrito) {
+      if (aux_tarjeta.id == tarjeta.id && aux_tarjeta.value == tarjeta.value) {
+        aux_tarjeta.cantidad++;
+        aux_tarjeta.subtotal +=
+          aux_tarjeta.value*1 + aux_tarjeta.chargeRate*1;
+        return true;
+      }
+    }
+
+    this.giftCardsCarrito.push(tarjeta);
     return true;
   }
 
-  public eliminarCard(id: number): boolean {
+  public eliminarCard(i: number): boolean {
+    if (i < 0) {
+      return false;
+    }
+    this.giftCardsCarrito.splice(i, 1);
     return true;
   }
 
@@ -73,27 +154,37 @@ class carritoTienda {
   public vaciar() {}
 
   public getTotal(): number {
-    return 0;
+    return this.total;
   }
 
+  public setTotal(total:number){
+    this.total = total;
+  }
 }
 
-class giftCard {
-
+export class giftCard {
   public id: number;
   public name: string;
   public image: string;
   public chargeRate: number;
   public value: number;
   public cantidad: number;
+  public subtotal: number;
 
-  constructor(id:number, name:string, image:string, chargeRate: number, value: number, cantidad: number){
-      this.id = id;
-      this.name = name;
-      this.image = image;
-      this.chargeRate = chargeRate;
-      this.value = value;
-      this.cantidad = cantidad;
+  constructor(
+    id: number,
+    name: string,
+    image: string,
+    chargeRate: number,
+    value: number,
+    cantidad: number
+  ) {
+    this.id = id;
+    this.name = name;
+    this.image = image;
+    this.chargeRate = chargeRate;
+    this.value = value;
+    this.cantidad = cantidad;
+    this.subtotal = value*1 + chargeRate*1;
   }
-
 }
