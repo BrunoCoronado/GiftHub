@@ -1,1 +1,161 @@
-<p>carrito works!</p>
+<br />
+<h1 style="text-align: center; font-weight: 400">Carrito</h1>
+<div class="contenedor">
+  <div class="example-container mat-elevation-z8">
+    <button
+      mat-raised-button
+      style="background-color: #17141d; color: white"
+      (click)="removeSelectedRows()"
+    >
+      Quitar tarjetas seleccionadas
+    </button>
+    <mat-table #table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="value">
+        <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> ${{ element.value }} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="chargeRate">
+        <mat-header-cell *matHeaderCellDef> Recargo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          ${{ element.chargeRate }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cantidad">
+        <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.cantidad }} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="subtotal">
+        <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          ${{ element.subtotal.toFixed(2) }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      >
+      </mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<div class="content" fxLayout="row wrap" fxLayoutGap="50px grid">
+  <div [fxFlex]="100 / 2 + '%'" fxFlex.xs="100%" fxFlex.sm="50%">
+    <mat-card class="mat-elevation-z10">
+      <mat-card-header>
+        <mat-card-title>Total en dólares 💵</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h2 class="precio">${{ this.preciodolares.toFixed(2) }}</h2>
+      </mat-card-content>
+      <mat-card-actions> </mat-card-actions>
+    </mat-card>
+  </div>
+  <div [fxFlex]="100 / 2 + '%'" fxFlex.xs="100%" fxFlex.sm="50%">
+    <mat-card class="mat-elevation-z10">
+      <mat-card-header>
+        <mat-card-title>Total en Quetzales 💶</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h2 class="precio" style="color: teal">
+          Q{{ this.precioquet.toFixed(2) }}
+        </h2>
+      </mat-card-content>
+      <mat-card-actions> </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
+  <div [fxFlex]="100 + '%'" fxFlex.xs="100%" fxFlex.sm="50%">
+    <mat-card class="mat-elevation-z10">
+      <mat-card-header>
+        <mat-card-title>Datos de facturación</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form class="example-form">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td class="td-pago">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </td>
+              <td class="td-pago">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Dirección</mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td class="td-pago">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Tarjeta</mat-label>
+                  <input matInput placeholder="1234123412341234" maxlength="16" minlength="16" [(ngModel)]="this.tarjeta" [ngModelOptions]="{standalone: true}" />
+                </mat-form-field>
+              </td>
+              <td class="td-pago">
+                <mat-form-field class="example-full-width">
+                  <mat-label>CVC</mat-label>
+                  <input matInput placeholder="123" maxlength="3"/>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </mat-card-content>
+      <mat-card-actions style="text-align: center; padding-bottom: 20px;">
+        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="pagarTarjeta()">Pagar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
