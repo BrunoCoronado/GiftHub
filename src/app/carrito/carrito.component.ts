@@ -10,6 +10,9 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
+import { WebService } from '../web.service';
+import { Router } from '@angular/router';
+
 const ELEMENT_DATA: giftCard[] = [];
 
 @Component({
@@ -24,12 +27,15 @@ export class CarritoComponent implements OnInit {
   carrito: carritoTienda;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  tarjeta:string = '';
+  tarjeta: string = '';
+  nombre_tarjeta: string = '';
 
   constructor(
     private _formBuilder: FormBuilder,
     private http: HttpClient,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private servicio: WebService,
+    private router: Router,
   ) {}
 
   displayedColumns = [
@@ -71,6 +77,7 @@ export class CarritoComponent implements OnInit {
     }
 
     this.tarjeta = '';
+    this.nombre_tarjeta = '';
     this.getTasaCambio();
   }
 
@@ -156,7 +163,44 @@ export class CarritoComponent implements OnInit {
   }
 
   pagarTarjeta(){
-    console.log(this.cifrarTarjeta(this.tarjeta));
+    if(this.carrito.giftCardsCarrito.length < 1 || this.precioquet == 0){
+      this._snackBar.open(
+        'No hay giftcards en el carrito ❌',
+        'Cerrar',
+        {
+          duration: 3000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        }
+      );
+      return;
+    }
+
+    this.carrito.tarjeta = this.cifrarTarjeta(this.tarjeta);
+    this.carrito.nombre_tarjeta = this.nombre_tarjeta;
+    this.carrito.estado = 'Exitoso';
+    this.carrito.total = this.precioquet;
+    console.log(this.servicio.insertarTransaccion(this.carrito));
+    this.servicio.insertarGiftCards(this.carrito);
+
+    this._snackBar.open(
+      'Compra realizada con éxito ✔️',
+      'Cerrar',
+      {
+        duration: 5000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      }
+    );
+
+    this.nombre_tarjeta = '';
+    this.tarjeta = '';
+    this.carrito =  null;
+    this.preciodolares = 0;
+    this.precioquet = 0;
+
+    localStorage.removeItem('carritoTienda');
+    this.router.navigate(['tienda']);
   }
 }
 
