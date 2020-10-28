@@ -7,7 +7,7 @@ import { HistorialComprasComponent} from './historial-compras/historial-compras.
 import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-giftcards.component';
 import {PerfilPersonalComponent} from './perfil-personal/perfil-personal.component';
 import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './autenticacion/registro/registro.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
     // {path:"", redirectTo:"historial-compras", pathMatch:"full"},
