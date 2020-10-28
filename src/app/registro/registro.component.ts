@@ -12,10 +12,4 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  validarCampos(campo1, campo2){
-    if(!campo1) return false;
-    if(!campo2) return false;
-    return true;
-  }
-
 }
