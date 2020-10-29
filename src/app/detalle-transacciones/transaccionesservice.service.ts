@@ -12,7 +12,7 @@ export class TransaccionesserviceService {
 
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) { }
   
-  public getTransacciones2() {
+  public getTransaccionesbd() {
     return this.firestore.collection("transaccion").snapshotChanges();
 
   }
