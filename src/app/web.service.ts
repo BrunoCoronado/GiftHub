@@ -38,7 +38,7 @@ export class WebService {
           Tarjeta: carrito.tarjeta,
           Total: carrito.total,
           nombre_tarjeta: carrito.nombre_tarjeta,
-          //uid: this.getUsuario(),
+          uid: this.getUsuario(),
         })
         .then(
           (res) => {},
@@ -61,7 +61,7 @@ export class WebService {
             name: aux_tarjeta.name,
             valor: aux_tarjeta.value,
             id_api: aux_tarjeta.id,
-            //uid: this.getUsuario(),
+            uid: this.getUsuario(),
           })
           x++;
       }
