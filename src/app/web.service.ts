@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { giftCard, carritoTienda } from './tienda/tienda.component';
 
 import { map,first } from 'rxjs/operators';
@@ -42,4 +42,40 @@ export class WebService {
   getUserTransactions(user:string){
     return this.firestore.collection('usuario').doc('id').collection('transaccion');
   }
+
+  async register(email: string, password: string): Promise<Object> {
+    try {
+
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      
+      console.log(user)
+
+      //await this.sendVerificationEmail();
+      return user;
+    } catch (error) { console.log('Error ->', error); return;}
+  }
+
+  async login(email: string, password: string): Promise<Object> {
+    try {
+      const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.updateUserData(user);
+      //this.presentAlert();
+      return user;
+    } catch (error) {
+      console.log('Error ->', error);
+    }
+  }
+
+  private updateUserData(user: any) {
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
+    const data: any = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+    };
+
+    return userRef.set(data, { merge: true });
+  }
+
+
 }

@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'transacciones', component: DetalleTransaccionesComponent},
   {path: 'historial-compras',  component: HistorialComprasComponent},
   {path: 'inventario', component: InventarioGiftcardsComponent},
-  {path: 'perfil-personal',component: PerfilPersonalComponent}
+  {path: 'perfil-personal',component: PerfilPersonalComponent},
   {path: 'login',component: LoginComponent},
   {path: 'registro',component: RegistroComponent},
 ];

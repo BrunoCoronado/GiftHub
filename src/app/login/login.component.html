@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
+    <div [fxFlex]="100 + '%'" fxFlex.xs="100%" fxFlex.sm="50%">
+      <mat-card class="mat-elevation-z10">
+        <mat-card-header>
+          <mat-card-title>Iniciar Sesión</mat-card-title>
+        </mat-card-header>
+  
+        <mat-card-content>
+          <form class="example-form">
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td class="td-pago">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Correo</mat-label>
+                    <input [(ngModel)]="usuario" [ngModelOptions]="{standalone: true}" matInput />
+                  </mat-form-field>
+                </td>
+                <td class="td-pago">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Contraseña</mat-label>
+                    <input [(ngModel)]="pass" [ngModelOptions]="{standalone: true}" matInput />
+                  </mat-form-field>
+                </td>
+            </table>
+          </form>
+        </mat-card-content>
+        <mat-card-actions style="text-align: center; padding-bottom: 20px;">
+            <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="irInicioSesion()">Iniciar Sesión</button>
+          <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="registrarse()">Registrarse</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
