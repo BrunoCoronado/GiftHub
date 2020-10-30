@@ -6,6 +6,7 @@ import {DetalleTransaccionesComponent} from './detalle-transacciones/detalle-tra
 import { HistorialComprasComponent} from './historial-compras/historial-compras.component';
 import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-giftcards.component';
 import {PerfilPersonalComponent} from './perfil-personal/perfil-personal.component';
+import {VerCatalogoComponent} from './ver-catalogo/ver-catalogo.component';
 
 const routes: Routes = [
     // {path:"", redirectTo:"historial-compras", pathMatch:"full"},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'transacciones', component: DetalleTransaccionesComponent},
   {path: 'historial-compras',  component: HistorialComprasComponent},
   {path: 'inventario', component: InventarioGiftcardsComponent},
-  {path: 'perfil-personal',component: PerfilPersonalComponent}
+  {path: 'perfil-personal',component: PerfilPersonalComponent},
+  {path: 'catalogo',component: VerCatalogoComponent}
 ];
 
 @NgModule({
