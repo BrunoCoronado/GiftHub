@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { TransaccionesserviceService } from './transaccionesservice.service'
 import { MatTableDataSource } from '@angular/material/table';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
+import { NgbModal ,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+//moudlos necesarios
+
+//import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import {ViewChild, ElementRef} from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 const ELEMENT_DATA: Transferencia[] = [];
 @Component({
   selector: 'app-detalle-transacciones',
@@ -8,14 +16,25 @@ const ELEMENT_DATA: Transferencia[] = [];
   styleUrls: ['./detalle-transacciones.component.css']
 })
 
+
 export class DetalleTransaccionesComponent implements OnInit {
+  @ViewChild("template") modal: ElementRef;
+
   // clientesService: TransaccionesserviceService;
-  constructor(private servicio: TransaccionesserviceService) {
+  perro="hola"
+modalRef: BsModalRef;
+  constructor(private servicio: TransaccionesserviceService,private modalservice:BsModalService,private modalService: NgbModal) {
     //   this.clientesService = servicio;
+  //  this.modalRef=modalservice;
   }
+  closeResult = '';
   public transacciones = [];
   public array2 = [];
- 
+  public arraygift = [];
+  public idtarjeta=""
+  public imagen=""
+  public nombre=""
+  public precio=""
 data=Object.assign(ELEMENT_DATA)
   dataSource = new MatTableDataSource<Element>(this.data);
   displayedColumns = [
@@ -34,15 +53,49 @@ data=Object.assign(ELEMENT_DATA)
     // this.transacciones = this.clientesService.gettransaccionesdetalladas();
     console.log(this.transacciones.length)
     this.Trasaccionescasteadas()
-   
+    this.giftcardscasteadas()
+  //this.abrirModal(this.modal);
+  }
+
+  abrirModal(modal){
+   console.log("LLAME A ABRIR")
+    this.modalService.open(modal);
+}
+
+
+open(content) {
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed`;
+  });
+}
+
+  //metodo para abrir el modal
+  async openModal(template: TemplateRef<any>){
+    this.modalRef=this.modalservice.show(template);
+  //  this.sleep(5000);
 
   }
 
+
+  cerrarmodal(){
+    this.modalservice.hide();
+  }
   public getTransaccionestodos() {
     let transacciones = [];
     return transacciones;
   }
 
+   sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+     if ((new Date().getTime() - start) > milliseconds) {
+      break;
+     }
+    }
+   }
+   
   public Trasaccionescasteadas() {
 
     this.servicio.getTransaccionesbd().subscribe(async (catsSnapshot) => {
@@ -80,6 +133,50 @@ data=Object.assign(ELEMENT_DATA)
          })*/
     });
     return this.transacciones;
+  }
+
+
+  //obtener giftcards
+  public giftcardscasteadas() {
+
+    this.servicio.getgiftcards().subscribe(async (catsSnapshot) => {
+
+
+
+      console.log(catsSnapshot)
+      for (let i = 0; i < catsSnapshot.length; i++) {
+        console.log("ENTRE AL FOR " + i)
+        console.log(catsSnapshot[i].payload.doc)
+        
+
+        this.arraygift.push(catsSnapshot[i].payload.doc.data())
+        console.log("LA IMAGEN DEL LA GIFT ES "+this.arraygift[i].image)
+
+      }
+  
+    });
+    return this.transacciones;
+  }
+
+  public abrirmodal(role,template: TemplateRef<any>){
+  //  alert(role)
+  for (let i = 0; i < this.arraygift.length; i++) {
+
+    if(role==this.arraygift[i].codigo){
+      this.imagen=this.arraygift[i].image;
+      this.precio=this.arraygift[i].valor;
+      this.nombre=this.arraygift[i].name;
+      this.idtarjeta=role;
+    }
+   // console.log("ENTRE AL FOR " + i)
+   // console.log(catsSnapshot[i].payload.doc)
+    
+
+
+  }
+
+    this.modalRef=this.modalservice.show(template);
+
   }
 
 

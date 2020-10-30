@@ -41,6 +41,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ModaltarjetaComponent } from './modaltarjeta/modaltarjeta.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     HistorialComprasComponent,
     InventarioGiftcardsComponent,
     PerfilPersonalComponent,
+    ModaltarjetaComponent,
   ],
   imports: [
     BrowserModule,

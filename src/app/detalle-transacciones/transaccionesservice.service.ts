@@ -17,6 +17,10 @@ export class TransaccionesserviceService {
 
   }
 
+  public getgiftcards() {
+    return this.firestore.collection("giftcard").snapshotChanges();
+
+  }
   public getusuarios() {
     return this.firestore.collection("usuario").snapshotChanges();
 

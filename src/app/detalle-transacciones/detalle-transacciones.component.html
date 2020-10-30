@@ -1,6 +1,6 @@
 <div class="contenedor">
   <div class="example-container mat-elevation-z8">
-    <button
+    <button 
       mat-raised-button
       style="background-color: #17141d; color: white"
       
@@ -24,18 +24,17 @@
       <!-- Name Column -->
       <ng-container matColumnDef="Fecha">
         <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.Fecha.toDate() }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Fecha.toDate() |  date  }} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="Giftcards">
         <mat-header-cell *matHeaderCellDef> Gifcards </mat-header-cell>
         <mat-cell *matCellDef="let element" > 
-          <ng-container *ngFor="let role of element.Giftcards">
-          
-              {{role}}  
-          
-            <br /> <!-- Use br if you want to display the roles vertically -->
+          <ng-container >
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="userdropdown">               
+              <li *ngFor="let role of element.Giftcards" ><a class="dropdown-item btn-sm" (click)="abrirmodal(role,template)" >{{ role }}</a></li>
+          </ul>
         </ng-container>
          
       </mat-cell>
@@ -81,4 +80,43 @@
       </mat-row>
     </mat-table>
   </div>
+
+ 
 </div>
+
+
+
+<ng-template #template let-modal>
+  <div class="modal-header">
+  <h4 class="modal-title pull-left">Tarjeta seleccionada {{idtarjeta}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarmodal()">
+  <span aria-hidden="true"> &times; </span>
+  </button>
+  </div>
+  
+  <div class="modal-body"> 
+
+
+    <div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
+      <div fxFlex.xs="100%" fxFlex.sm="33%">
+        <mat-card class="giftcard mat-elevation-z10">
+          <mat-card-header>
+            <mat-card-title>{{nombre}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="{{imagen}}">
+          <mat-card-content>
+            <mat-chip-list aria-label="Availability" >
+              <mat-chip >{{precio}} </mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+  
+  </ng-template>
+
+  
