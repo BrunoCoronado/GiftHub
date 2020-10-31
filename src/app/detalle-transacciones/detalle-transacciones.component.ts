@@ -1,9 +1,17 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef,Inject } from '@angular/core';
 import { TransaccionesserviceService } from './transaccionesservice.service'
 import { MatTableDataSource } from '@angular/material/table';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { NgbModal ,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ModaltarjetaComponent } from '../modaltarjeta/modaltarjeta.component';
+export interface DialogData {
+  precio: string;
+  nombre: string;
+  imagen:string;
+  idtarjeta:string;
+}
 //moudlos necesarios
 
 //import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -17,13 +25,16 @@ const ELEMENT_DATA: Transferencia[] = [];
 })
 
 
+
 export class DetalleTransaccionesComponent implements OnInit {
   @ViewChild("template") modal: ElementRef;
+  animal: string;
+  name: string;
 
   // clientesService: TransaccionesserviceService;
   perro="hola"
 modalRef: BsModalRef;
-  constructor(private servicio: TransaccionesserviceService,private modalservice:BsModalService,private modalService: NgbModal) {
+  constructor(private servicio: TransaccionesserviceService,private modalservice:BsModalService,private modalService: NgbModal,public dialog: MatDialog) {
     //   this.clientesService = servicio;
   //  this.modalRef=modalservice;
   }
@@ -62,6 +73,31 @@ data=Object.assign(ELEMENT_DATA)
     this.modalService.open(modal);
 }
 
+openDialog(role): void {
+  for (let i = 0; i < this.arraygift.length; i++) {
+
+    if(role==this.arraygift[i].codigo){
+      this.imagen=this.arraygift[i].image;
+      this.precio=this.arraygift[i].valor;
+      this.nombre=this.arraygift[i].name;
+      this.idtarjeta=role;
+    }
+   // console.log("ENTRE AL FOR " + i)
+   // console.log(catsSnapshot[i].payload.doc)
+    
+
+
+  }
+  const dialogRef = this.dialog.open(ModaltarjetaComponent, {
+    width: '250px',
+    data: {precio: this.precio, nombre: this.nombre,imagen:this.imagen,idtareta:this.idtarjeta}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    this.animal = result;
+  });
+}
 
 open(content) {
   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -188,4 +224,21 @@ export class Transferencia {
   {
 
   }
+  }
+
+  //clase para el dialogo
+  @Component({
+    selector: 'dialog-overview-example-dialog',
+    templateUrl: 'plantilla.html',
+  })
+  export class DialogOverviewExampleDialog {
+  
+    constructor(
+      public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+      @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+  
   }

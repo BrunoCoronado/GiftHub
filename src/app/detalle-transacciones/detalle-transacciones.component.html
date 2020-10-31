@@ -33,7 +33,7 @@
         <mat-cell *matCellDef="let element" > 
           <ng-container >
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="userdropdown">               
-              <li *ngFor="let role of element.Giftcards" ><a class="dropdown-item btn-sm" (click)="abrirmodal(role,template)" >{{ role }}</a></li>
+              <li *ngFor="let role of element.Giftcards" ><a class="dropdown-item btn-sm" (click)="openDialog(role)" >{{ role }}</a></li>
           </ul>
         </ng-container>
          
@@ -119,4 +119,3 @@
   
   </ng-template>
 
-  
