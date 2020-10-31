@@ -38,8 +38,8 @@ export class RegalarGiftcardsComponent implements OnInit {
   };
 
   constructor(
-    private servicio: RegalarService,
-    private modalService: BsModalService
+    private servicio?: RegalarService,
+    private modalService?: BsModalService
   ) {}
 
   ngOnInit(): void {

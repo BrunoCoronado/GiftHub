@@ -4,31 +4,14 @@ import { DetalleTransaccionesComponent } from './detalle-transacciones.component
 import { BehaviorSubject } from 'rxjs';
 describe('DetalleTransaccionesComponent', () => {
   let component: DetalleTransaccionesComponent;
-  let fixture: ComponentFixture<DetalleTransaccionesComponent>;
 
-
-  const FirestoreStub = {
-    collection: (name: string) => ({
-      doc: (_id: string) => ({
-        valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
-        set: (_d: any) => new Promise((resolve, _reject) => resolve()),
-      }),
-    }),
-  };
-
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [DetalleTransaccionesComponent],
-      providers: [{ provide: AngularFirestore, useValue: FirestoreStub },]
-    })
-      .compileComponents();
+  beforeEach(()=>{
+    //router=new MockedRouter();
+    component=new DetalleTransaccionesComponent();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DetalleTransaccionesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  afterEach(()=>{
+    component=null;
   });
 
   it('should create', () => {

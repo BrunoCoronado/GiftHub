@@ -31,11 +31,11 @@ export class CarritoComponent implements OnInit {
   nombre_tarjeta: string = '';
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private servicio: WebService,
-    private router: Router,
+    private _formBuilder?: FormBuilder,
+    private http?: HttpClient,
+    private _snackBar?: MatSnackBar,
+    private servicio?: WebService,
+    private router?: Router,
   ) {}
 
   displayedColumns = [

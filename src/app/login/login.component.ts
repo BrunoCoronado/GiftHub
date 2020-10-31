@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   pass: string;
 
 
-  constructor(private router: Router, private webService: WebService) { }
+  constructor(private router?: Router, private webService?: WebService) { }
 
   ngOnInit(): void {
   }
