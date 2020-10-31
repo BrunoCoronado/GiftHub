@@ -45,6 +45,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RegalarGiftcardsComponent } from './regalar-giftcards/regalar-giftcards.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { Navbar2Component } from './navbar2/navbar2.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { RegalarGiftcardsComponent } from './regalar-giftcards/regalar-giftcards
     ModaltarjetaComponent,
     LoginComponent,
     RegistroComponent,
-    RegalarGiftcardsComponent
+    RegalarGiftcardsComponent,
+    NavbarComponent,
+    Navbar2Component
   ],
   imports: [
     BrowserModule,

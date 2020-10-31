@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
     if(user){
       alert('Bienvenido al sistema')
-      this.router.navigate([ '/tienda' ]); 
+     // this.router.navigate([ '/tienda' ]); 
     } else {
       alert('error')
     }

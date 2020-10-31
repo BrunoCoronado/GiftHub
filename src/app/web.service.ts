@@ -7,7 +7,7 @@ import {
 } from '@angular/fire/firestore';
 import { giftCard, carritoTienda } from './tienda/tienda.component';
 import * as firebase from 'firebase/app';
-
+import { Router } from '@angular/router';
 import { map, first } from 'rxjs/operators';
 
 import { LocalStorageService } from 'ngx-webstorage';
@@ -22,7 +22,8 @@ export class WebService {
   constructor(
     private localStorage: LocalStorageService,
     private afAuth?: AngularFireAuth,
-    private firestore?: AngularFirestore
+    private firestore?: AngularFirestore,
+    private router?: Router,
   ) {
    /* if (afAuth) {
       this.afAuth.authState.subscribe((auth) => {
@@ -196,6 +197,13 @@ export class WebService {
             };
 
             localStorage.setItem('Usuario', JSON.stringify(data));
+
+              if(data.rol=="cliente"){
+                this.router.navigate([ '/tienda' ]); 
+              }else if (data.rol=="administrador"){
+                this.router.navigate([ '/transacciones']); 
+              }
+
           });
         });
       }
