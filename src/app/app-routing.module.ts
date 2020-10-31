@@ -9,6 +9,7 @@ import {PerfilPersonalComponent} from './perfil-personal/perfil-personal.compone
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import {VerCatalogoComponent} from './ver-catalogo/ver-catalogo.component';
+import { RegalarGiftcardsComponent } from './regalar-giftcards/regalar-giftcards.component';
 
 const routes: Routes = [
     // {path:"", redirectTo:"historial-compras", pathMatch:"full"},
@@ -18,11 +19,12 @@ const routes: Routes = [
   {path: 'historial-compras',  component: HistorialComprasComponent},
   {path: 'inventario', component: InventarioGiftcardsComponent},
   {path: 'perfil-personal',component: PerfilPersonalComponent},
-  {path: 'catalogo',component: VerCatalogoComponent}
+  {path: 'catalogo',component: VerCatalogoComponent},
   {path: 'login',component: LoginComponent},
   {path: 'registro',component: RegistroComponent},
   {path: '*',component: LoginComponent},
   {path: '**',component: LoginComponent},
+  {path: "regalar-giftcards",component:RegalarGiftcardsComponent}
 ];
 
 @NgModule({

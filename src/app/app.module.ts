@@ -31,6 +31,7 @@ import { InventarioGiftcardsComponent } from './inventario-giftcards/inventario-
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+<<<<<<< HEAD
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -44,6 +45,9 @@ import { ModaltarjetaComponent } from './modaltarjeta/modaltarjeta.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+=======
+import { RegalarGiftcardsComponent } from './regalar-giftcards/regalar-giftcards.component';
+>>>>>>> regalar-giftcards
 
 @NgModule({
   declarations: [
@@ -55,9 +59,13 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     HistorialComprasComponent,
     InventarioGiftcardsComponent,
     PerfilPersonalComponent,
+<<<<<<< HEAD
     ModaltarjetaComponent,
     LoginComponent,
     RegistroComponent
+=======
+    RegalarGiftcardsComponent
+>>>>>>> regalar-giftcards
   ],
   imports: [
     BrowserModule,

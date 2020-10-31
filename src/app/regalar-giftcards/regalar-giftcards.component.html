@@ -1,0 +1,55 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Regalar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let objeto of cards2; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{objeto.name}}</td>
+        <td>{{objeto.codigo}}</td>
+        <td>{{objeto.valor}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="openModal(objeto,template)">Regalar</button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+
+
+
+  <ng-template #template let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Regalar Giftcards</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal(template)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+    
+    
+  
+      <div class="input-group">
+        <div _ngcontent-amc-c7="" class="col-sm-12">
+          <p class="text-left f-w-600 text-inverse">Usuario Destino</p>
+       
+          <select class="form-control" #destino  id="destino" >
+            <option *ngFor="let user of usuarios;">{{user.usuario}}</option>
+          </select>
+
+
+        </div>
+      </div>
+  
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" ngbAutofocus class="btn btn-danger" (click)="realizarCambio(destino)">Regalar</button>
+    </div>
+  </ng-template>

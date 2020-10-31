@@ -33,7 +33,7 @@ export class PerfilPersonalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.SimularLogin();
+    //this.SimularLogin();
     this.obtenerDatos();
   }
 
@@ -120,6 +120,7 @@ export class PerfilPersonalComponent implements OnInit {
 
 
         this.userService.updateUser(this.user,this.user.id);
+        location.reload();
       } else {
         this.toastr.error(
           "Validación Usuario",
