@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { giftCard, carritoTienda } from './tienda/tienda.component';
 import * as firebase from 'firebase/app';
 
@@ -12,7 +15,21 @@ import { LocalStorageService } from 'ngx-webstorage';
   providedIn: 'root',
 })
 export class WebService {
-  constructor(private localStorage: LocalStorageService, private afAuth?: AngularFireAuth, private firestore?: AngularFirestore) { }
+  usuarioid: string;
+
+  constructor(
+    private localStorage: LocalStorageService,
+    private afAuth?: AngularFireAuth,
+    private firestore?: AngularFirestore
+  ) {
+    if (afAuth) {
+      this.afAuth.authState.subscribe((auth) => {
+        if (auth) {
+          this.usuarioid = auth.uid;
+        }
+      });
+    }
+  }
 
   identificadoresTarjetas: string[] = [];
 
@@ -37,7 +54,7 @@ export class WebService {
           Tarjeta: carrito.tarjeta,
           Total: carrito.total,
           nombre_tarjeta: carrito.nombre_tarjeta,
-          uid: this.getUsuario(),
+          uid: this.usuarioid,
         })
         .then(
           (res) => {},
@@ -47,29 +64,26 @@ export class WebService {
   }
 
   public insertarGiftCards(carrito: carritoTienda) {
-    
     var x = 0;
 
     for (let aux_tarjeta of carrito.giftCardsCarrito) {
       for (var i = 0; i < aux_tarjeta.cantidad; i++) {
-        this.firestore
-          .collection('giftcard')
-          .add({
-            codigo: this.identificadoresTarjetas[x],
-            image: aux_tarjeta.image,
-            name: aux_tarjeta.name,
-            valor: aux_tarjeta.value,
-            id_api: aux_tarjeta.id,
-            uid: this.getUsuario(),
-          })
-          x++;
+        this.firestore.collection('giftcard').add({
+          codigo: this.identificadoresTarjetas[x],
+          image: aux_tarjeta.image,
+          name: aux_tarjeta.name,
+          valor: aux_tarjeta.value,
+          id_api: aux_tarjeta.id,
+          uid: this.usuarioid,
+        });
+        x++;
       }
     }
   }
 
   getUsuario() {
     return this.getCurrentUser().then(function (firebaseUser) {
-      return firebaseUser.uid;
+      return firebaseUser;
     });
   }
 
@@ -118,27 +132,35 @@ export class WebService {
 
   async register(email: string, password: string, data: any): Promise<Object> {
     try {
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      
-      console.log(user)
+      console.log(user);
 
-      this.firestore.collection('usuario').add(data)
+      this.firestore.collection('usuario').add(data);
 
       //await this.sendVerificationEmail();
       return user;
-    } catch (error) { console.log('Error ->', error); return;}
+    } catch (error) {
+      console.log('Error ->', error);
+      return;
+    }
   }
 
   async login(email: string, password: string): Promise<Object> {
     try {
-      const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
+      const { user } = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
       this.updateUserData(user);
       //this.presentAlert();
 
-      if(user){
-        let usr = this.firestore.collection("usuario", (ref) =>
-          ref.where("correo", "==", email)
+      if (user) {
+        let usr = this.firestore.collection('usuario', (ref) =>
+          ref.where('correo', '==', email)
         );
         usr.snapshotChanges().forEach((a) => {
           a.forEach((item) => {
@@ -154,22 +176,25 @@ export class WebService {
             */
             //cursos.push({carnetEstudiante: item.payload.doc.data().carnetEstudiante, cursosAprobados:item.payload.doc.data().cursosAprobados});
             const data = {
-              nombres: JSON.parse(JSON.stringify(item.payload.doc.data())).nombres,
-              apellidos: JSON.parse(JSON.stringify(item.payload.doc.data())).apellidos,
+              nombres: JSON.parse(JSON.stringify(item.payload.doc.data()))
+                .nombres,
+              apellidos: JSON.parse(JSON.stringify(item.payload.doc.data()))
+                .apellidos,
               dpi: JSON.parse(JSON.stringify(item.payload.doc.data())).dpi,
-              correo: JSON.parse(JSON.stringify(item.payload.doc.data())).correo,
+              correo: JSON.parse(JSON.stringify(item.payload.doc.data()))
+                .correo,
               edad: JSON.parse(JSON.stringify(item.payload.doc.data())).edad,
-              usuario: JSON.parse(JSON.stringify(item.payload.doc.data())).usuario,
-              password: JSON.parse(JSON.stringify(item.payload.doc.data())).password,
+              usuario: JSON.parse(JSON.stringify(item.payload.doc.data()))
+                .usuario,
+              password: JSON.parse(JSON.stringify(item.payload.doc.data()))
+                .password,
               rol: JSON.parse(JSON.stringify(item.payload.doc.data())).rol,
-            }
+            };
 
-            localStorage.setItem("Usuario", JSON.stringify(data))
-
+            localStorage.setItem('Usuario', JSON.stringify(data));
           });
         });
       }
-
 
       return user;
     } catch (error) {
@@ -178,7 +203,9 @@ export class WebService {
   }
 
   private updateUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(
+      `users/${user.uid}`
+    );
     const data: any = {
       uid: user.uid,
       email: user.email,
@@ -187,6 +214,4 @@ export class WebService {
 
     return userRef.set(data, { merge: true });
   }
-
-
 }
