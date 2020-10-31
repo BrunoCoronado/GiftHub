@@ -42,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { RegistroComponent } from './registro/registro.component';
     MatTableModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [AngularFirestore, AngularFirestore, AngularFireAuth],
   bootstrap: [AppComponent],

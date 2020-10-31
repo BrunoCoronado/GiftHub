@@ -34,6 +34,7 @@
     "ngx-bootstrap": "^6.1.0",
     "ngx-bootstrap-modal": "^2.0.1",
     "ngx-toastr": "^13.1.0",
+    "ngx-webstorage": "^6.0.0",
     "rxjs": "^6.6.3",
     "save-dev": "0.0.1-security",
     "toastr": "^2.1.4",

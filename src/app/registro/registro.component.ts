@@ -23,15 +23,28 @@ export class RegistroComponent implements OnInit {
   }
 
   async registrarse(){
-    /*console.log(this.nombre)
+    /*
+    console.log(this.nombre)
     console.log(this.apellidos)
     console.log(this.dpi)
     console.log(this.correo)
     console.log(this.edad)
     console.log(this.usuario)
-    console.log(this.pass)*/
+    console.log(this.pass)
+    */
 
-    const user = await this.webService.register(this.correo, this.pass);
+    const data = {
+      nombres: this.nombre,
+      apellidos: this.apellidos,
+      dpi: this.dpi,
+      correo: this.correo,
+      edad: this.edad,
+      usuario: this.usuario,
+      password: this.pass,
+      rol: 'cliente'
+    }
+
+    const user = await this.webService.register(this.correo, this.pass, data);
 
     if(user){
       alert('usuario creado')

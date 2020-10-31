@@ -19,6 +19,8 @@ const routes: Routes = [
   {path: 'perfil-personal',component: PerfilPersonalComponent},
   {path: 'login',component: LoginComponent},
   {path: 'registro',component: RegistroComponent},
+  {path: '*',component: LoginComponent},
+  {path: '**',component: LoginComponent},
 ];
 
 @NgModule({
