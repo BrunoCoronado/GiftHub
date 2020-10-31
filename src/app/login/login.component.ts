@@ -10,7 +10,7 @@ import { WebService } from '../web.service';
 export class LoginComponent implements OnInit {
   usuario: string;
   pass: string;
-
+  error_message='';
 
   constructor(private router?: Router, private webService?: WebService) { }
 
