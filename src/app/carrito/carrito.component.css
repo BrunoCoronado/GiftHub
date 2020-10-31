@@ -1,0 +1,79 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.content {
+  padding-left: 65px;
+  padding-right: 65px;
+  padding-top: 20px;
+}
+
+.contenedor {
+  justify-content: center;
+  padding-left: 65px;
+  padding-right: 65px;
+  padding-bottom: 25px;
+  
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+.contenedor-left {
+  display: flex;
+  justify-content: left;
+  padding: 40px;
+}
+
+.mat-header-cell {
+  font-size: medium;
+  font-weight: bold;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color:  #17141d;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color:  #17141d !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color:  #17141d !important;
+}
+
+.precio {
+  display: flex;
+  justify-content: center;
+  color: green;
+  font-weight: bolder;
+}
+
+.example-form {
+  padding: 20px;
+}
+
+.example-full-width {
+  padding: 10px;
+  width: 100%;
+}
+
+.td-pago {
+  padding-left: 25px;
+  padding-right: 25px;
+  
+}

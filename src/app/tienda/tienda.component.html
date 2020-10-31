@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>  
+<div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
+  <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let tarjeta of giftCards">
+    <mat-card class="giftcard mat-elevation-z10">
+      <mat-card-header>
+        <mat-card-title>{{tarjeta.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{tarjeta.image}}">
+      <mat-card-content>
+        <mat-chip-list aria-label="Availability" >
+          <mat-chip *ngFor="let precio of tarjeta.availability" (click)="chipControl(tarjeta, this.values[precio-1].total)">${{this.values[precio-1].total}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

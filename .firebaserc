@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ayd1-practica3": {
+      "hosting": {
+        "gifthub": [
+          "ayd1-practica3"
+        ]
+      }
+    }
+  }
+}

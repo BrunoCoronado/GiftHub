@@ -1,0 +1,17 @@
+<div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
+    <div fxFlex.xs="100%" fxFlex.sm="33%">
+      <mat-card class="giftcard mat-elevation-z10">
+        <mat-card-header>
+          <mat-card-title >{{data.nombre}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image height="200px" width="800px" src={{data.imagen}}>
+        <mat-card-content>
+          <mat-chip-list aria-label="Availability" >
+            <mat-chip >{{data.precio}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
