@@ -6,7 +6,7 @@ import { giftCard, carritoTienda } from './tienda/tienda.component';
 import * as firebase from 'firebase/app';
 
 import { map, first } from 'rxjs/operators';
-import { map,first } from 'rxjs/operators';
+
 import { LocalStorageService } from 'ngx-webstorage';
 @Injectable({
   providedIn: 'root',
