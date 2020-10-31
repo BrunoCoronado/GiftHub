@@ -33,7 +33,7 @@ export class PerfilPersonalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.SimularLogin();
+    //this.SimularLogin();
     this.obtenerDatos();
   }
 

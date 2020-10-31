@@ -43,7 +43,7 @@ export class RegalarGiftcardsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.SimularLogin();
+    //this.SimularLogin();
     this.obtenerDatos();
     this.getCards();
   }
