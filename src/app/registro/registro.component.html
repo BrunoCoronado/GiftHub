@@ -2,7 +2,7 @@
   <div [fxFlex]="100 + '%'" fxFlex.xs="100%" fxFlex.sm="50%">
     <mat-card class="mat-elevation-z10">
       <mat-card-header>
-        <mat-card-title>Registrarse</mat-card-title>
+        <mat-card-title id="title">Registrarse</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
@@ -12,25 +12,25 @@
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>Nombre</mat-label>
-                  <input [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" matInput />
+                  <input [(ngModel)]="nombre" id="registro-nombre" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>Apellidos</mat-label>
-                  <input [(ngModel)]="apellidos" [ngModelOptions]="{standalone: true}" matInput />
+                  <input [(ngModel)]="apellidos" id="registro-apellido" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>DPI</mat-label>
-                  <input [(ngModel)]="dpi" [ngModelOptions]="{standalone: true}" matInput />
+                  <input [(ngModel)]="dpi" id="registro-dpi" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>Correo</mat-label>
-                  <input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" matInput />
+                  <input [(ngModel)]="correo" id="registro-email" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
             </tr>
@@ -41,19 +41,19 @@
                 <td class="td-pago">
                   <mat-form-field class="example-full-width">
                     <mat-label>Edad</mat-label>
-                    <input [(ngModel)]="edad" [ngModelOptions]="{standalone: true}" matInput />
+                    <input [(ngModel)]="edad" id="registro-edad" [ngModelOptions]="{standalone: true}" matInput />
                   </mat-form-field>
                 </td>
                 <td class="td-pago">
                   <mat-form-field class="example-full-width">
                     <mat-label>Usuario</mat-label>
-                    <input [(ngModel)]="usuario" [ngModelOptions]="{standalone: true}" matInput />
+                    <input [(ngModel)]="usuario" id="registro-usuario" [ngModelOptions]="{standalone: true}" matInput />
                   </mat-form-field>
                 </td>
                 <td class="td-pago">
                   <mat-form-field class="example-full-width">
                     <mat-label>Contraseña</mat-label>
-                    <input type="password" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}" matInput />
+                    <input type="password" [(ngModel)]="pass" id="registro-pass" [ngModelOptions]="{standalone: true}" matInput />
                   </mat-form-field>
                 </td>
               </tr>
@@ -61,9 +61,12 @@
         </form>
       </mat-card-content>
       <mat-card-actions style="text-align: center; padding-bottom: 20px;">
-        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="registrarse()">Registrarse</button>
-        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="irInicioSesion()">Iniciar Sesión</button>
+        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white"  id="signup-button" (click)="registrarse()">Registrarse</button>
+        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" id="loginnbutton" (click)="irInicioSesion()">Iniciar Sesión</button>
       </mat-card-actions>
+      <p text-center style="color: red; text-transform: uppercase;" id="error_message">
+        {{error_message}}
+      </p>
     </mat-card>
   </div>
 </div>

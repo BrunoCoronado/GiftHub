@@ -1,13 +1,9 @@
 <app-navbar2></app-navbar2>
 <div class="contenedor">
   <div class="example-container mat-elevation-z8">
-    <button 
-      mat-raised-button
-      style="background-color: #17141d; color: white"
-      
-    >
-   TRANSFERENCIAS
-   
+    <button mat-raised-button style="background-color: #17141d; color: white">
+      TRANSFERENCIAS
+
     </button>
     <mat-table #table [dataSource]="dataSource">
       <!-- Position Column -->
@@ -16,11 +12,11 @@
         <mat-cell *matCellDef="let element"> {{ element.uid }} </mat-cell>
       </ng-container>
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="Estado">
-              <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{ element.Estado }} </mat-cell>
-            </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Estado">
+        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Estado }} </mat-cell>
+      </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="Fecha">
@@ -31,15 +27,16 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="Giftcards">
         <mat-header-cell *matHeaderCellDef> Gifcards </mat-header-cell>
-        <mat-cell *matCellDef="let element" > 
-          <ng-container >
-        
-            <ul >               
-              <li *ngFor="let role of element.Giftcards" ><a class="dropdown-item btn-sm" (click)="openDialog(role)" >{{role}}</a></li>
-          </ul>
-        </ng-container>
-         
-      </mat-cell>
+        <mat-cell *matCellDef="let element">
+          <ng-container>
+
+            <ul>
+              <li *ngFor="let role of element.Giftcards"><a class="dropdown-item btn-sm"
+                  (click)="openDialog(role)">{{role}}</a></li>
+            </ul>
+          </ng-container>
+
+        </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
@@ -67,36 +64,33 @@
       <!-- Checkbox Column -->
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
-       
+
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-       
+
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row
-        *matRowDef="let row; columns: displayedColumns"
- 
-      >
+      <mat-row *matRowDef="let row; columns: displayedColumns">
       </mat-row>
     </mat-table>
   </div>
 
- 
+
 </div>
 
 
 
 <ng-template #template let-modal>
   <div class="modal-header">
-  <h4 class="modal-title pull-left">Tarjeta seleccionada {{idtarjeta}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarmodal()">
-  <span aria-hidden="true"> &times; </span>
-  </button>
+    <h4 class="modal-title pull-left">Tarjeta seleccionada {{idtarjeta}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarmodal()">
+      <span aria-hidden="true"> &times; </span>
+    </button>
   </div>
-  
-  <div class="modal-body"> 
+
+  <div class="modal-body">
 
 
     <div class="content" fxLayout="row wrap" fxLayoutGap="18px grid">
@@ -107,8 +101,8 @@
           </mat-card-header>
           <img mat-card-image src="{{imagen}}">
           <mat-card-content>
-            <mat-chip-list aria-label="Availability" >
-              <mat-chip >{{precio}} </mat-chip>
+            <mat-chip-list aria-label="Availability">
+              <mat-chip>{{precio}} </mat-chip>
             </mat-chip-list>
           </mat-card-content>
           <mat-card-actions>
@@ -118,6 +112,5 @@
     </div>
 
   </div>
-  
-  </ng-template>
 
+</ng-template>
