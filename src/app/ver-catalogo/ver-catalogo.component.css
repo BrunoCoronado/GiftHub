@@ -7,7 +7,7 @@ mat-toolbar {
   }
   
   .giftcard {
-    background: #17141d;
+    background: black;
     color: white;
     margin: 10px;
     border-radius: 20px !important;
@@ -16,7 +16,7 @@ mat-toolbar {
   
   
   .mat-card-header:hover {
-    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    background: linear-gradient(90deg, #9dff00d5, #e52e71);
     text-shadow: none;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;

@@ -20,6 +20,7 @@
         <img mat-card-image src="{{tarjeta.image}}">
         <mat-card-content>
           <mat-chip-list aria-label="Availability" >
+
             <mat-chip *ngFor="let precio of tarjeta.availability">${{this.values[precio-1].total}}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
@@ -27,4 +28,6 @@
         </mat-card-actions>
       </mat-card>
     </div>
+   
+
   </div>
