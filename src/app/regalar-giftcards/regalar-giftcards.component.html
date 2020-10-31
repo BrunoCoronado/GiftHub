@@ -40,7 +40,7 @@
           <p class="text-left f-w-600 text-inverse">Usuario Destino</p>
        
           <select class="form-control" #destino  id="destino" >
-            <option *ngFor="let user of usuarios;">{{user.usuario}}</option>
+            <option *ngFor="let user of usuarios;" value="{{user.id}}">{{user.usuario}}</option>
           </select>
 
 

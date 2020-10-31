@@ -16,19 +16,21 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class WebService {
   usuarioid: string;
+ 
+
 
   constructor(
     private localStorage: LocalStorageService,
     private afAuth?: AngularFireAuth,
     private firestore?: AngularFirestore
   ) {
-    if (afAuth) {
+   /* if (afAuth) {
       this.afAuth.authState.subscribe((auth) => {
         if (auth) {
           this.usuarioid = auth.uid;
         }
       });
-    }
+    }*/
   }
 
   identificadoresTarjetas: string[] = [];
@@ -155,7 +157,7 @@ export class WebService {
         email,
         password
       );
-      this.updateUserData(user);
+      //this.updateUserData(user);
       //this.presentAlert();
 
       if (user) {
@@ -175,11 +177,13 @@ export class WebService {
             console.log(JSON.parse(JSON.stringify(item.payload.doc.data())).rol)
             */
             //cursos.push({carnetEstudiante: item.payload.doc.data().carnetEstudiante, cursosAprobados:item.payload.doc.data().cursosAprobados});
+            
+            this.usuarioid=item.payload.doc.id;
+            console.log('id',item.payload.doc.id)
             const data = {
-              nombres: JSON.parse(JSON.stringify(item.payload.doc.data()))
-                .nombres,
-              apellidos: JSON.parse(JSON.stringify(item.payload.doc.data()))
-                .apellidos,
+              id: item.payload.doc.id,
+              nombres: JSON.parse(JSON.stringify(item.payload.doc.data())).nombres,
+              apellidos: JSON.parse(JSON.stringify(item.payload.doc.data())).apellidos,
               dpi: JSON.parse(JSON.stringify(item.payload.doc.data())).dpi,
               correo: JSON.parse(JSON.stringify(item.payload.doc.data()))
                 .correo,
@@ -204,7 +208,7 @@ export class WebService {
 
   private updateUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.firestore.doc(
-      `users/${user.uid}`
+      `usuario/${user.uid}`
     );
     const data: any = {
       uid: user.uid,

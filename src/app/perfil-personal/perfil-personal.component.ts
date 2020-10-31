@@ -118,7 +118,7 @@ export class PerfilPersonalComponent implements OnInit {
         this.user.usuario=user.value;
         this.user.password=password.value;
 
-
+        console.log('Llegaaaaaaaaaaaaaaaaaa',this.user.id)
         this.userService.updateUser(this.user,this.user.id);
         location.reload();
       } else {
