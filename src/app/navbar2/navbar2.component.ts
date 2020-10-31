@@ -11,7 +11,7 @@ export class Navbar2Component implements OnInit {
 
   title = 'gifthub';
 
-  constructor(private service: WebService,private localStorage: LocalStorageService,private router: Router) { }  
+  constructor(private service?: WebService,private localStorage?: LocalStorageService,private router?: Router) { }  
 
   ngOnInit(): void {
   

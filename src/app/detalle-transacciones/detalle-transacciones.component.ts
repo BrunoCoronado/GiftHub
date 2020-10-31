@@ -34,7 +34,7 @@ export class DetalleTransaccionesComponent implements OnInit {
   // clientesService: TransaccionesserviceService;
   perro="hola"
 modalRef: BsModalRef;
-  constructor(private servicio: TransaccionesserviceService,private modalservice:BsModalService,private modalService: NgbModal,public dialog: MatDialog) {
+  constructor(private servicio?: TransaccionesserviceService,private modalservice?:BsModalService,private modalService?: NgbModal,public dialog?: MatDialog) {
     //   this.clientesService = servicio;
   //  this.modalRef=modalservice;
   }

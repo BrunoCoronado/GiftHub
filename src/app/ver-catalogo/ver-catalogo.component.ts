@@ -36,6 +36,10 @@ export class VerCatalogoComponent implements OnInit {
       });
   }
 
+  getCatalogo(){
+    return this.giftCards;
+  }
+
   gridColumns = 3;
   defaultElevation = 2;
   raisedElevation = 8;
