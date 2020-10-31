@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Transferencia } from '../detalle-transacciones/detalle-transacciones.component';
+import { TransaccionesserviceService } from '../detalle-transacciones/transaccionesservice.service';
 import { WebService } from '../web.service';
 
+
+const ELEMENT_DATA: Transferencia[] = [];
 @Component({
   selector: 'app-historial-compras',
   templateUrl: './historial-compras.component.html',
@@ -8,18 +13,39 @@ import { WebService } from '../web.service';
 })
 export class HistorialComprasComponent implements OnInit {
 
-  constructor(private webService: WebService) { }
+  public transacciones = [];
 
- ngOnInit(): void {
-    //this.cargar();
+  constructor(private webService: WebService, private servicio?: TransaccionesserviceService) { }
+
+  ngOnInit() {
+    this.obtenerTransacciones();
   }
-/*
-  async cargar(){
-    let res= await this.webService.getUserTransactions('id').get().toPromise();
-    console.log(res);
-  }*/
 
-  public static getHistorial(){
+
+
+
+  async obtenerTransacciones() {
+    let current = JSON.parse(localStorage.getItem("Usuario"));;
+    this.servicio.getTransaccionesbd().subscribe((datos) => {
+      for (let index = 0; index < datos.length; index++) {
+        const element = JSON.parse(JSON.stringify(datos[index].payload.doc.data()));
+        if (element.uid == current.id) {
+          element.Giftcards = element.Giftcards.length;
+          element.Fecha= this.toDateTime(element.Fecha.seconds);
+          this.transacciones.push(element);
+        }
+
+      }
+    });
+  }
+
+  toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+  }
+
+  public static getHistorial() {
     return [];
   }
 
