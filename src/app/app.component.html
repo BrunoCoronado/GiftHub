@@ -26,11 +26,31 @@
       >
         <mat-icon > shopping_cart</mat-icon>
       </button>
+
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        routerLink="/perfil-personal"
+      >
+        <mat-icon > perm_identity</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        routerLink="/regalar-giftcards"
+      >
+        <mat-icon > card_giftcard</mat-icon>
+      </button>
+
+
+
       <button
         mat-icon-button
         class="example-icon"
+        (click)="cerrarSesion()"
       >
-        <mat-icon>settings</mat-icon>
+        <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>
   </p>

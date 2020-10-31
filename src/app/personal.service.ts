@@ -44,7 +44,8 @@ export class PersonalService {
   }
 
   updateUser(user: User, id: string) {
-    return this.firestore.collection("users").doc(id).update(user);
+    localStorage.setItem("Usuario", JSON.stringify(user))
+    return this.firestore.collection("usuario").doc(id).update(user);
   }
 
   newUser(data) {

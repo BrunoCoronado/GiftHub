@@ -56,7 +56,7 @@ export class RegalarGiftcardsComponent implements OnInit {
         var obj = item.payload.doc.data();
         if(this.user.usuario!=obj.usuario){
           this.usuarios.push({
-            id: obj.id,
+            id: item.payload.doc.id,
             usuario: obj.usuario,
             nombres: obj.nombres,
             apellidos: obj.apellidos,
@@ -111,9 +111,10 @@ export class RegalarGiftcardsComponent implements OnInit {
       console.log(this.cards1.length);
       for (let i = 0; i < this.cards1.length; i++) {
         let obj = this.cards1[i];
-        console.log(this.user.usuario);
+        console.log('id comparado',obj.uid);
+        console.log('id mio',this.user.id);
 
-        if (obj.uid == this.user.usuario) {
+        if (obj.uid == this.user.id) {
           console.log(obj)
           this.cards2.push(obj);
         }

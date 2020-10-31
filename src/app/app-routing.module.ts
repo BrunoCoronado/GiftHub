@@ -22,9 +22,9 @@ const routes: Routes = [
   {path: 'catalogo',component: VerCatalogoComponent},
   {path: 'login',component: LoginComponent},
   {path: 'registro',component: RegistroComponent},
+  {path: "regalar-giftcards",component:RegalarGiftcardsComponent},
   {path: '*',component: LoginComponent},
-  {path: '**',component: LoginComponent},
-  {path: "regalar-giftcards",component:RegalarGiftcardsComponent}
+  {path: '**',component: LoginComponent}
 ];
 
 @NgModule({
