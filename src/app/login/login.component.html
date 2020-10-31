@@ -12,13 +12,13 @@
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>Correo</mat-label>
-                  <input [(ngModel)]="usuario" [ngModelOptions]="{standalone: true}" matInput />
+                  <input [(ngModel)]="usuario" id="login-email" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input type="password" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}" matInput />
+                  <input type="password" [(ngModel)]="pass" id="login-pass" [ngModelOptions]="{standalone: true}" matInput />
                 </mat-form-field>
               </td>
           </table>

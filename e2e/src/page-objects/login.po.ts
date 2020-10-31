@@ -39,12 +39,12 @@ export class LoginPage {
   }
 
   enterEmail(correo:string){
-    const el = element(by.css('app-login > .user'));
+    const el = element(by.id('login-email'));
     el.sendKeys(correo);
   }
 
   enterPassword(password:string){
-    const el = element(by.css('app-login > .contra'));
+    const el = element(by.id('login-pass'));
     el.sendKeys(password);
   }
 

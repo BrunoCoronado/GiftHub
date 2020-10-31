@@ -15,14 +15,15 @@ export class RegistroComponent implements OnInit {
   edad: string;
   usuario: string;
   pass: string;
+  error_message = '';
 
-  constructor(private router: Router, private webService: WebService) {}
+  constructor(private router: Router, private webService: WebService) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  async registrarse(){
+  async registrarse() {
     /*
     console.log(this.nombre)
     console.log(this.apellidos)
@@ -33,29 +34,40 @@ export class RegistroComponent implements OnInit {
     console.log(this.pass)
     */
 
-    const data = {
-      nombres: this.nombre,
-      apellidos: this.apellidos,
-      dpi: this.dpi,
-      correo: this.correo,
-      edad: this.edad,
-      usuario: this.usuario,
-      password: this.pass,
-      rol: 'cliente'
-    }
-
-    const user = await this.webService.register(this.correo, this.pass, data);
-
-    if(user){
-      alert('usuario creado')
-      this.router.navigate([ '/login' ]); 
+    if (this.nombre == '' ||
+      this.apellidos == '' ||
+      this.dpi == '' ||
+      this.correo == '' ||
+      this.edad == '' ||
+      this.usuario == '' ||
+      this.pass == ''
+    ) {
+      this.error_message = 'Datos inválidos';
+      return;
     } else {
-      alert('error')
+      this.error_message='';
+      const data = {
+        nombres: this.nombre,
+        apellidos: this.apellidos,
+        dpi: this.dpi,
+        correo: this.correo,
+        edad: this.edad,
+        usuario: this.usuario,
+        password: this.pass,
+        rol: 'cliente'
+      }
+      const user = await this.webService.register(this.correo, this.pass, data);
+      if (user) {
+        //alert('usuario creado')
+        this.router.navigate(['/login']);
+      } else {
+        this.error_message = 'Datos inválidos';
+      }
     }
   }
 
-  irInicioSesion(){
-    this.router.navigate([ '/login' ]); 
+  irInicioSesion() {
+    this.router.navigate(['/login']);
   }
 
 }
