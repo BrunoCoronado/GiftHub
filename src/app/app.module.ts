@@ -24,7 +24,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CarritoComponent } from './carrito/carrito.component';
-import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { DetalleTransaccionesComponent } from './detalle-transacciones/detalle-transacciones.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HistorialComprasComponent } from './historial-compras/historial-compras.component';
@@ -42,6 +41,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ModaltarjetaComponent } from './modaltarjeta/modaltarjeta.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -49,12 +51,13 @@ import { ModaltarjetaComponent } from './modaltarjeta/modaltarjeta.component';
     VerCatalogoComponent,
     TiendaComponent,
     CarritoComponent,
-    RegistroComponent,
     DetalleTransaccionesComponent,
     HistorialComprasComponent,
     InventarioGiftcardsComponent,
     PerfilPersonalComponent,
     ModaltarjetaComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +95,7 @@ import { ModaltarjetaComponent } from './modaltarjeta/modaltarjeta.component';
     MatTableModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [AngularFirestore, AngularFirestore, AngularFireAuth],
   bootstrap: [AppComponent],
