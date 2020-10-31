@@ -1,16 +1,16 @@
-import { AppPage } from './app.po';
+import { AppPage } from '../page-objects/app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Componente: App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display Gifthub', () => {
+  it('Debe mostrar la página de inicio de sesión', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('GiftHub');
+    expect(page.getTitleText()).toEqual('Iniciar Sesión');
   });
 
   afterEach(async () => {

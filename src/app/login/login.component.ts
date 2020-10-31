@@ -10,7 +10,7 @@ import { WebService } from '../web.service';
 export class LoginComponent implements OnInit {
   usuario: string;
   pass: string;
-
+  error_message='';
 
   constructor(private router?: Router, private webService?: WebService) { }
 
@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
     const user = await this.webService.login(this.usuario, this.pass);
 
     if(user){
-      alert('Bienvenido al sistema')
+      //alert('Bienvenido al sistema')
      // this.router.navigate([ '/tienda' ]); 
     } else {
-      alert('error')
-    }
+      this.error_message='Correo o contraseña inválidos';    }
   }
 
   registrarse(){
