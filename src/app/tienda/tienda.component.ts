@@ -118,9 +118,11 @@ export class TiendaComponent implements OnInit {
 export class carritoTienda {
 
   tarjeta: string = '';
+  dolares: boolean = false;
   estado: string = '';
   total: number = 0;
   nombre_tarjeta: string = '';
+  vencimiento_tarjeta: string = '';
   public giftCardsCarrito: giftCard[] = [];
 
   constructor() {}

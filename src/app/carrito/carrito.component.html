@@ -146,8 +146,8 @@
               </td>
               <td class="td-pago">
                 <mat-form-field class="example-full-width">
-                  <mat-label>CVC</mat-label>
-                  <input matInput placeholder="123" maxlength="3"/>
+                  <mat-label>Fecha Vencimiento</mat-label>
+                  <input matInput type="month" min="2020-11" [(ngModel)]="this.vencimiento_tarjeta" [ngModelOptions]="{standalone: true}" />
                 </mat-form-field>
               </td>
             </tr>
@@ -155,7 +155,8 @@
         </form>
       </mat-card-content>
       <mat-card-actions style="text-align: center; padding-bottom: 20px;">
-        <button mat-raised-button btn-block style="width: 25%; background-color: #17141d; color: white" (click)="pagarTarjeta()">Pagar ✔️</button>
+        <button mat-raised-button btn-block style="width: 25%; background-color: green; color: white" (click)="pagarTarjeta(true)">Pagar en dólares</button>
+        <button mat-raised-button btn-block style="width: 25%; background-color: teal; color: white" (click)="pagarTarjeta(false)">Pagar en quetzales</button>
       </mat-card-actions>
     </mat-card>
   </div>

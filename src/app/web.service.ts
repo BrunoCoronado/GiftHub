@@ -47,6 +47,8 @@ export class WebService {
   public async insertarTransaccion(carrito: carritoTienda): Promise<any> {
     await this.generarIdentificadores(carrito);
 
+    //alert('UID: ' + JSON.parse(localStorage.getItem('Usuario')).id);
+
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection('transaccion')
@@ -55,9 +57,10 @@ export class WebService {
           Fecha: firebase.firestore.FieldValue.serverTimestamp(),
           Giftcards: this.identificadoresTarjetas,
           Tarjeta: carrito.tarjeta,
-          Total: carrito.total,
+          Total: carrito.dolares ? '$' + carrito.total: 'Q' + carrito.total,
           nombre_tarjeta: carrito.nombre_tarjeta,
-          uid: this.usuarioid,
+          vencimiento_tarjeta: carrito.vencimiento_tarjeta,
+          uid: JSON.parse(localStorage.getItem('Usuario')).id
         })
         .then(
           (res) => {},
@@ -77,7 +80,7 @@ export class WebService {
           name: aux_tarjeta.name,
           valor: aux_tarjeta.value,
           id_api: aux_tarjeta.id,
-          uid: this.usuarioid,
+          uid: JSON.parse(localStorage.getItem('Usuario')).id,
         });
         x++;
       }

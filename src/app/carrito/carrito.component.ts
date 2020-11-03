@@ -29,6 +29,7 @@ export class CarritoComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   tarjeta: string = '';
   nombre_tarjeta: string = '';
+  vencimiento_tarjeta: string = '';
 
   constructor(
     private _formBuilder?: FormBuilder,
@@ -162,7 +163,7 @@ export class CarritoComponent implements OnInit {
     return tarjetaC;
   }
 
-  pagarTarjeta(){
+  pagarTarjeta(moneda:boolean){
     if(this.carrito.giftCardsCarrito.length < 1 || this.precioquet == 0){
       this._snackBar.open(
         'No hay giftcards en el carrito ❌',
@@ -179,7 +180,13 @@ export class CarritoComponent implements OnInit {
     this.carrito.tarjeta = this.cifrarTarjeta(this.tarjeta);
     this.carrito.nombre_tarjeta = this.nombre_tarjeta;
     this.carrito.estado = 'Exitoso';
-    this.carrito.total = this.precioquet;
+    this.carrito.vencimiento_tarjeta = this.vencimiento_tarjeta;
+    this.carrito.total = moneda ? this.preciodolares:this.precioquet;
+    this.carrito.dolares = moneda;
+    
+
+    console.log(this.carrito);
+
     console.log(this.servicio.insertarTransaccion(this.carrito));
     this.servicio.insertarGiftCards(this.carrito);
 
