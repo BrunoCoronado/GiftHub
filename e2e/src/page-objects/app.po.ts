@@ -7,5 +7,5 @@ export class AppPage {
 
   getTitleText(): Promise<string> {
     return element(by.id('title')).getText() as Promise<string>;
-  }
+  } 
 }
