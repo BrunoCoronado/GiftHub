@@ -145,6 +145,7 @@ export class CarritoComponent implements OnInit {
         console.log('>> Tasa de cambio: ' + data[0].total);
         this.calcularTotales(this.tasaCambio);
       });
+    return this.tasaCambio;
   }
 
   masterToggle() {
@@ -174,7 +175,7 @@ export class CarritoComponent implements OnInit {
           verticalPosition: this.verticalPosition,
         }
       );
-      return;
+      return false;
     }
 
     this.carrito.tarjeta = this.cifrarTarjeta(this.tarjeta);
@@ -208,6 +209,7 @@ export class CarritoComponent implements OnInit {
 
     localStorage.removeItem('carritoTienda');
     this.router.navigate(['tienda']);
+    return true;
   }
 }
 

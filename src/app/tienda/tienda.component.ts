@@ -21,15 +21,15 @@ export class TiendaComponent implements OnInit {
 
   constructor(private http?: HttpClient, private _snackBar?: MatSnackBar) {}
 
-  async ngOnInit() {
-    await this.http
+  ngOnInit() {
+    this.http
       .get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Card')
       .subscribe((data) => {
         this.giftCards = data;
         console.log(data);
       });
 
-    await this.http
+    this.http
       .get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Value')
       .subscribe((data) => {
         this.values = data;
