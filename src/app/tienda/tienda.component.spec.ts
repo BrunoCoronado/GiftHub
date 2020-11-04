@@ -58,4 +58,14 @@ describe('TiendaComponent', () => {
   it('Encriptar tarjeta tenga 16 caracteres', () => {
     expect(component.encriptarTarjeta('1234123412341234').length).toBe(16);
   });
+  it('Objeto simulado: Obtencion de Catalogo',()=>{
+    spyOn(component,'ngOnInit').and.returnValue();
+    component.ngOnInit()
+    expect(component.giftCards).not.toBeNull();
+  });
+  it('Objeto simulado: Obtencion de Precios',()=>{
+    spyOn(component,'ngOnInit').and.returnValue();
+    component.ngOnInit();
+    expect(component.values).not.toBeNull();
+  });
 });

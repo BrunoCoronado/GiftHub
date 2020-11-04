@@ -17,7 +17,7 @@ export class RegistroComponent implements OnInit {
   pass: string;
   error_message = '';
 
-  constructor(private router: Router, private webService: WebService) { }
+  constructor(private router?: Router, private webService?: WebService) { }
 
   ngOnInit(): void {
 
@@ -43,9 +43,9 @@ export class RegistroComponent implements OnInit {
       this.pass == ''
     ) {
       this.error_message = 'Datos inválidos';
-      return;
+      return false;
     } else {
-      this.error_message='';
+      this.error_message = '';
       const data = {
         nombres: this.nombre,
         apellidos: this.apellidos,
@@ -60,8 +60,10 @@ export class RegistroComponent implements OnInit {
       if (user) {
         //alert('usuario creado')
         this.router.navigate(['/login']);
+        return true;
       } else {
         this.error_message = 'Datos inválidos';
+        return false;
       }
     }
   }

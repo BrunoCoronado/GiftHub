@@ -2,15 +2,19 @@ import { TestBed } from '@angular/core/testing';
 
 import { WebService } from './web.service';
 
-describe('WebService', () => {
-  /*let service: WebService;
+describe('Service: WebService', () => {
+  let service: WebService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(WebService);
+    //router=new MockedRouter();
+    service = new WebService();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });*/
+  afterEach(() => {
+    service = null;
+  });
+
+  it('Generación Alfanumérico para Giftcard', () => {
+    expect(service.generarIdentificador().length>7).toBeTruthy();
+  });
 });
