@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   pass: string;
   error_message='';
 
-  constructor(private router?: Router, private webService?: WebService) { }
+  constructor(private webService?: WebService, private router?: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,8 +26,11 @@ export class LoginComponent implements OnInit {
     if(user){
       //alert('Bienvenido al sistema')
      // this.router.navigate([ '/tienda' ]); 
+     return true;
     } else {
-      this.error_message='Correo o contraseña inválidos';    }
+      this.error_message='Correo o contraseña inválidos'; 
+      return false;
+    }
   }
 
   registrarse(){

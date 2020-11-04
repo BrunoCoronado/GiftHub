@@ -20,7 +20,7 @@ export class WebService {
 
 
   constructor(
-    private localStorage: LocalStorageService,
+    private localStorage?: LocalStorageService,
     private afAuth?: AngularFireAuth,
     private firestore?: AngularFirestore,
     private router?: Router,
